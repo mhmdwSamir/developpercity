@@ -6,7 +6,10 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HomeComponent } from './components/home/home.component';
 import  {AuthGuard} from "./guards"
 import { PlanComponent } from './components/plan/plan.component';
-
+import { AdminComponent } from './components/admin/admin.component';
+import { 
+  RoleGuardService as RoleGuard 
+} from './guards/role-gservice.guard';
 const appRoutes: Routes = [
 
   { path: '', component: HomeComponent  , canActivate: [AuthGuard] },
@@ -14,7 +17,15 @@ const appRoutes: Routes = [
   { path: 'login', component: LogInComponent },
   { path: 'register', component: RegisterComponent },
   // { path: 'home',   redirectTo: '/me', pathMatch: 'full' }, 
-  { path: '**', component: NotFoundComponent},
+  { 
+    path: 'admin', 
+    component: AdminComponent, 
+    canActivate: [RoleGuard], 
+    data: { 
+      expectedRole: 'admin'
+    }
+  },
+  { path: '**', component: NotFoundComponent}
  
 ];
 

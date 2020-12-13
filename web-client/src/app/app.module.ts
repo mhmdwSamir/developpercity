@@ -19,6 +19,7 @@ import { AlertService, AuthenticationService, UserService } from './services';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { PlanComponent } from './components/plan/plan.component';
 import { PlanDpayComponent } from './components/plan-dpay/plan-dpay.component';
+import { AdminComponent } from './components/admin/admin.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +33,7 @@ import { PlanDpayComponent } from './components/plan-dpay/plan-dpay.component';
     FooterComponent,
     PlanComponent,
     PlanDpayComponent,
+    AdminComponent,
 
   ],
   imports: [
