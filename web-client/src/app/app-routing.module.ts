@@ -7,11 +7,8 @@ import { HomeComponent } from './components/home/home.component';
 import  {AuthGuard} from "./guards"
 import { PlanComponent } from './components/plan/plan.component';
 import { AdminComponent } from './components/admin/admin.component';
-import { 
-  RoleGuardService as RoleGuard 
-} from './guards/role-gservice.guard';
+import {  RoleGuardService as RoleGuard } from './guards/role-gservice.guard';
 const appRoutes: Routes = [
-
   { path: '', component: HomeComponent  , canActivate: [AuthGuard] },
   { path: 'plan', component: PlanComponent },
   { path: 'login', component: LogInComponent },
@@ -26,7 +23,6 @@ const appRoutes: Routes = [
     }
   },
   { path: '**', component: NotFoundComponent}
- 
 ];
 
 
