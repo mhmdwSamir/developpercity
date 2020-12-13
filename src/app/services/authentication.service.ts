@@ -8,7 +8,9 @@ import { User } from '../Models/user';
 })
 export class AuthenticationService {  
   private currentUserSubject: BehaviorSubject<User>;
+  //  Who is the current user  ?!
   public currentUser: Observable<User>;
+  
   rootAuthUrl = "http://localhost:3000/api/auth";
   
   constructor(private http: HttpClient) {
