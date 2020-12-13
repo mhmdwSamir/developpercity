@@ -1,6 +1,6 @@
 <div class="form-group">
     <label for="cardNumber">{{label}}</label>
-    <input [formControl]="control" type="text" class="form-control" id="cardNumber" [placeholder]="placeholder" [ngClass]="{ 'is-invalid':control.errors && control.touched }" />
+    <input [formControl]="control" type="text" class="form-control" [placeholder]="placeholder" [ngClass]="{ 'is-invalid':control.errors && control.touched && control.dirty }" />
 </div>
 
 
@@ -9,5 +9,6 @@
     <p *ngIf="control.errors.required" class="error"> ** {{label}} Feild Is Required </p>
     <p *ngIf="control.errors.minlength" class="error"> ** {{label}} Should be at least 16 Number </p>
     <p *ngIf="control.errors.maxlength" class="error"> ** {{label}} Should be at most 16 Number </p>
+    <p *ngIf="control.errors.email" class="error"> ** Email Should be Valid </p>
     <p *ngIf="control.errors.pattern" class="error"> ** Invalid Format ☠️☠️ </p>
 </ng-container>

@@ -9,8 +9,6 @@ export class MatchPassword {
     
     let password = control.get('password').value;
     let confirmPass = control.get('repeatPassword').value;
-    
-    
     return password === confirmPass ? null : { DontMatch: true }     
   }
 }
