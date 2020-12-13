@@ -4,6 +4,10 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { map } from 'rxjs/operators';
 import { User } from '../Models/user';
+
+
+const jwtHelper = new JwtHelperService();
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,7 +18,7 @@ export class AuthenticationService {
   
   rootAuthUrl = "http://localhost:3000/api/auth";
   
-  constructor(private http: HttpClient ,private _JwtHelper:JwtHelperService) {
+  constructor(private http: HttpClient ,private JwtHelper:JwtHelperService) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -47,7 +51,7 @@ export class AuthenticationService {
     const token = localStorage.getItem('token');
     // Check whether the token is expired and return
     // true or false
-    return !this._JwtHelper.isTokenExpired(token);
+    return !this.JwtHelper.isTokenExpired(token);
   }
   
 }
