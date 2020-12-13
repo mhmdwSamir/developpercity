@@ -1,6 +1,6 @@
 <div>
 
-    <button class="btn-lg btn-primary"> Pay </button>
+    <button class="btn btn-primary"> Pay </button>
     <div class="pay-methods">
         <i class="fa fa-home"></i>
         <i class="fa fa-home"></i>
@@ -11,47 +11,10 @@
     </div>
 
     <form [formGroup]="formPay" (onSubmit)="payWith()">
-        <div class="form-group">
-            <label for="cardNumber">card Number</label>
-            <input formControlName="cardNum" type="text" class="form-control" id="cardNumber" placeholder="Your card Number" [ngClass]="{ 'is-invalid':formPay.get('cardNum').errors && formPay.get('cardNum').touched }" />
-        </div>
 
-
-        <!-- 
-        [ngClass]="{'first': true, 'second': true, 'third': false}" -->
-
-        <ng-container *ngIf="formPay.controls.cardNum.errors && formPay.controls.cardNum.touched ">
-
-            <p *ngIf="formPay.controls.cardNum.errors.required" class="error"> card Number Should be Number </p>
-            <p *ngIf="formPay.controls.cardNum.errors.minlength"> card Number Should be at least 16 Number </p>
-            <p *ngIf="formPay.controls.cardNum.errors.maxlength"> card Number Should be at most 16 Number </p>
-            <p *ngIf="formPay.controls.cardNum.errors.pattern"> Invalid Format </p>
-        </ng-container>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <!-- <div class="form-group">
-            <label for="exData">Expiration Date </label>
-            <input formControlName="exDate" [ngClass]="{ 'is-invalid':formPay.get('exData').errors && formPay.get('cardNum').touched }" type="text" class="form-control" id="exData" placeholder="MM/YY">
-        </div> -->
-        <!-- <div class="form-group">
-            <label for="sCode">Security Code </label>
-            <input formControlName="sCode" [ngClass]="{ 'is-invalid':formPay.get('sCode').errors && formPay.get('cardNum').touched }" type="text" class="form-control" id="sCode">
-            <small id="sCode " class="form-text text-muted ">We'll never share your Security code  with anyone else.</small>
-        </div> -->
+        <app-input [control]="formPay.get('cardNum')" label="Card Number" placeholder="Your Card Number "></app-input>
+        <app-input [control]="formPay.get('exDate')" label="Expiration Date" placeholder="Your Expiration Date "></app-input>
+        <app-input [control]="formPay.get('sCode')" label="Security Code" placeholder="Secret Code"></app-input>
 
         <div class="my-4">
             By starting a DEVCITY membership, you agree to our Membership Terms of Service. Your payment method will be charged a recurring USD $50 yearly fee, unless you decide to cancel. No refunds for memberships canceled between billing cycles
@@ -64,8 +27,7 @@
 
 <div class="my-5">
     for debugging burposes
-
-    <div> Form is valid {{formPay.valid}}</div>
-
+    <div> Form is valid ? {{formPay.valid}}</div>
+    <div> Form value {{formPay.value | json}}</div>
 
 </div>
