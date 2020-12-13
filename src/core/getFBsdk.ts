@@ -1,6 +1,6 @@
 import secrets  from './secret';
 
-(<any>window).fbAsyncInit = ()=> {
+ (<any>window).fbAsyncInit = ()=> {
     FB.init({
       appId            : secrets.facebookAppId,
       //autoLogAppEvents : true,

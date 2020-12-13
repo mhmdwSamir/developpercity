@@ -58,5 +58,22 @@ export class LogInComponent implements OnInit {
                 this._alertService.error(error);
                 this.loading = false;
             });
-}
+  }
+  onLogFb(){
+   FB.getLoginStatus((response)=>{
+   
+      if(response.status ==="connected"){
+         this.router.navigate(["./home"])
+      } 
+      else{
+        FB.login((loginResponse)=>{
+          this.router.navigate(["./home"])
+        })
+      }
+   
+   })
+  
+  
+  }
+
 }
