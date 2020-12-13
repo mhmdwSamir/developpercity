@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 
 import { UserService} from "../../services/user.service"
+import { MatchPassword } from 'src/app/helpers/Validators/match-password';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -21,10 +22,12 @@ export class RegisterComponent implements OnInit {
       password : new FormControl("" , [Validators.required]),
       repeatPassword : new FormControl("" , [Validators.required]),
    
+  } , {
+     validators : this._matchPassword.checkPasswords
   })
   
   
-  constructor(private _userService :UserService , private _alertService : AlertService , private router: Router,) { }
+  constructor(private _userService :UserService , private _matchPassword:MatchPassword, private _alertService : AlertService , private router: Router,) { }
 
   ngOnInit(): void {
   }
