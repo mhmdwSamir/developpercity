@@ -8,9 +8,5 @@ to operate back end
 
 
 
-
-Lead :-
--- Eng : Marwa Radwan 
-
 Core Team:-
 --Eng  : MohamedAzab
