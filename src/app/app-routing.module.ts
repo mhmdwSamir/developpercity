@@ -5,12 +5,15 @@ import {LogInComponent} from "./components/log-in/log-in.component"
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HomeComponent } from './components/home/home.component';
 import  {AuthGuard} from "./guards"
+import { PlanComponent } from './components/plan/plan.component';
 
 const appRoutes: Routes = [
-  // { path: '', component: HomeComponent  , canActivate: [AuthGuard] },
-  { path: 'home', component: HomeComponent  , canActivate: [AuthGuard] },
+
+  { path: '', component: HomeComponent  , canActivate: [AuthGuard] },
   { path: 'login', component: LogInComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'plan', component: PlanComponent ,canActivate: [AuthGuard]},
+  // { path: 'home',   redirectTo: '/me', pathMatch: 'full' }, 
   { path: '**', component: NotFoundComponent},
  
 ];

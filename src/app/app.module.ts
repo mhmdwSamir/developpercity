@@ -17,6 +17,7 @@ import { InputComponent } from './shared/input/input.component';
 import { FooterComponent } from './shared/footer/footer.component'
 import { AlertService, AuthenticationService, UserService } from './services';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
+import { PlanComponent } from './components/plan/plan.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +29,7 @@ import { JwtInterceptor } from './helpers/jwt.interceptor';
     AlertComponent,
     InputComponent,
     FooterComponent,
+    PlanComponent,
 
   ],
   imports: [

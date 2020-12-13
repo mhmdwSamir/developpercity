@@ -63,6 +63,7 @@ export class LogInComponent implements OnInit {
    FB.getLoginStatus((response)=>{
    
       if(response.status ==="connected"){
+      console.log(response)
          this.router.navigate(["./home"])
       } 
       else{
