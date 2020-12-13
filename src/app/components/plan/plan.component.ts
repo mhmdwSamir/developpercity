@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./plan.component.scss']
 })
 export class PlanComponent implements OnInit {
-
+  showDP:boolean = false
   constructor() { }
 
   ngOnInit(): void {
+  }
+  
+  
+  showDetailplan(){
+        this.showDP = !this.showDP
+  
   }
 
 }

@@ -1,0 +1,71 @@
+<div>
+
+    <button class="btn-lg btn-primary"> Pay </button>
+    <div class="pay-methods">
+        <i class="fa fa-home"></i>
+        <i class="fa fa-home"></i>
+        <i class="fa fa-home"></i>
+        <i class="fa fa-home"></i>
+        <i class="fa fa-home"></i>
+        <i class="fa fa-home"></i>
+    </div>
+
+    <form [formGroup]="formPay" (onSubmit)="payWith()">
+        <div class="form-group">
+            <label for="cardNumber">card Number</label>
+            <input formControlName="cardNum" type="text" class="form-control" id="cardNumber" placeholder="Your card Number" [ngClass]="{ 'is-invalid':formPay.get('cardNum').errors && formPay.get('cardNum').touched }" />
+        </div>
+
+
+        <!-- 
+        [ngClass]="{'first': true, 'second': true, 'third': false}" -->
+
+        <ng-container *ngIf="formPay.controls.cardNum.errors && formPay.controls.cardNum.touched ">
+
+            <div *ngIf="formPay.controls.cardNum.errors.required"> card Number Should be Number </div>
+            <p *ngIf="formPay.controls.cardNum.errors.minlength" class="invalid-feedback"> card Number Should be at least 16 Number </p>
+            <p *ngIf="formPay.controls.cardNum.errors.maxlength" class="invalid-feedback"> card Number Should be at most 16 Number </p>
+            <p *ngIf="formPay.controls.cardNum.errors.pattern" class="invalid-feedback"> Invalid Format </p>
+        </ng-container>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- <div class="form-group">
+            <label for="exData">Expiration Date </label>
+            <input formControlName="exDate" [ngClass]="{ 'is-invalid':formPay.get('exData').errors && formPay.get('cardNum').touched }" type="text" class="form-control" id="exData" placeholder="MM/YY">
+        </div> -->
+        <!-- <div class="form-group">
+            <label for="sCode">Security Code </label>
+            <input formControlName="sCode" [ngClass]="{ 'is-invalid':formPay.get('sCode').errors && formPay.get('cardNum').touched }" type="text" class="form-control" id="sCode">
+            <small id="sCode " class="form-text text-muted ">We'll never share your Security code  with anyone else.</small>
+        </div> -->
+
+        <div class="my-4">
+            By starting a DEVCITY membership, you agree to our Membership Terms of Service. Your payment method will be charged a recurring USD $50 yearly fee, unless you decide to cancel. No refunds for memberships canceled between billing cycles
+        </div>
+        <button type="submit" class="btn btn-outline-primary"> Pay with credit | debtCard </button>
+    </form>
+
+</div>
+
+
+<div class="my-5">
+    for debugging burposes
+
+    <div> Form is valid {{formPay.valid}}</div>
+
+
+</div>

@@ -12,7 +12,7 @@ const appRoutes: Routes = [
   { path: '', component: HomeComponent  , canActivate: [AuthGuard] },
   { path: 'login', component: LogInComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'plan', component: PlanComponent ,canActivate: [AuthGuard]},
+  { path: 'plan', component: PlanComponent },
   // { path: 'home',   redirectTo: '/me', pathMatch: 'full' }, 
   { path: '**', component: NotFoundComponent},
  

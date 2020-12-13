@@ -1,1 +1,34 @@
-<p>plan works!</p>
+<div class="container">
+    <div class="row my-5 text-center">
+        <div>
+            <h1> DEVCITY </h1>
+            <p> pla pla pla................ </p>
+        </div>
+
+        <div class="form-check">
+            <input (click)="showDetailplan()" class="form-check-input" type="radio" name="exampleRadios" id="plan1" value="monthly">
+            <label class="form-check-label" for="plan1">
+                   Monthly
+                   <span class="text-muted"> $5 / month </span>
+            </label>
+        </div>
+
+
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="plan2" value="annualy">
+            <label class="form-check-label" for="plan2">
+                Annualy
+                   <span class="text-muted"> $50 / Annualy </span>
+                </label>
+        </div>
+
+
+
+    </div>
+
+
+    <div class="row" *ngIf="showDP">
+        <app-plan-dpay></app-plan-dpay>
+
+    </div>
+</div>
