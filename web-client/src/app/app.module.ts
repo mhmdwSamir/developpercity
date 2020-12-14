@@ -23,6 +23,10 @@ import { AdminComponent } from './components/admin/admin.component';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { UserComponent } from './components/user/user.component';
 import { TrimDirective } from './shared/directives/trim.directive';
+import { DividerComponent } from './shared/divider/divider.component';
+import { ArticleComponent } from './shared/article/article.component';
+import { FollowerComponent } from './shared/follower/follower.component';
+import { MainArticleComponent } from './shared/main-article/main-article.component';
 
 
 export function tokenGetter() {
@@ -46,6 +50,10 @@ console.log(localStorage.getItem("access_token"))
     AdminComponent,
     UserComponent,
     TrimDirective,
+    DividerComponent,
+    ArticleComponent,
+    FollowerComponent,
+    MainArticleComponent,
 
   ],
   imports: [
