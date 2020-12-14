@@ -1,3 +1,4 @@
+// unworking 
 .divider {
     background: white;
     text-align: center;
@@ -18,6 +19,12 @@
 }
 
 .userArticle {
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
+    border: 1px solid black;
+}
+
+.article_main_img {
+    width: 100%;
+    height: 300px;
 }

@@ -14,59 +14,81 @@
 
 <hr/>
 
-<!-- start HOME PAGE -->
-<div class="container-fluid">
+<!-- start HOME PAGE **************************************-->
+<div class="container">
     <div class="special row my-5">
-
+        <!-- start col -->
         <div class="col-md-4">
             <section>
 
-                <img src="../../../assets/images/article/thu-1-img.png" class="img-thumbnail" />
+                <img src="../../../assets/images/article/thu-1-img.png" class="article_main_img mb-3" />
                 <div class="content">
-                    <h3>mhmdazab</h3>
-                    <h2> How to Add Version to Angular Application</h2>
+                    <h6 class="text-muted display-5">mhmdazab</h6>
+                    <h5> How to Add Version to Angular Application</h5>
                     <p> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa, expedita? </p>
-                    <a>Read More</a>
-                    <span> Date    <i class="fa fa-star"></i> </span>
+                    <a routerLink="/more">Read More</a>
+                    <span class="small font-italic"> 2 min read   <i class="fa fa-star"></i> </span>
                 </div>
 
             </section>
         </div>
-
+        <!--  Middel col  -->
         <div class="col-md-5 ">
+            <!-- article  -->
+            <article class="mb-5">
+                <div class="left-part d-flex ">
+
+                    <img src="../../../assets/images/followers/child.png" class="userArticle mr-3" />
+                    <div class="d-flex flex-column justify-content-between ">
+                        <h5 class="text-muted"> lolaloka </h5>
+                        <p class="small">Lorem ipsum dolor sit amet.</p>
+                        <span class="text-muted font-italic small"> Jun 14 .4min read <i class="fa fa-star"></i> </span>
+                    </div>
+                    <hr class="solid" />
+                </div>
+
+            </article>
+            <!--  divider  -->
+            <hr class="solid">
+            <!--  another article  -->
             <article>
                 <div class="left-part d-flex ">
 
-                    <img src="../../../assets/images/followers/child.png" class="userArticle mr-4" />
-                    <div>
-
-                        <h5> lolaloka </h5>
-                        <p class="lead">Lorem ipsum dolor sit amet.</p>
-                        <span class="text-muted"> Jun 14 .4min read <i class="fa fa-star"></i> </span>
+                    <img src="../../../assets/images/topics/user2.png" class="userArticle mr-3" />
+                    <div class="d-flex flex-column  ">
+                        <h5 class="text-muted"> lolaloka </h5>
+                        <p class="">Lorem ipsum dolor sit amet.</p>
+                        <span class="text-muted font-italic small"> Jun 14 .4min read <i class="fa fa-star"></i> </span>
                     </div>
+                    <hr class="solid" />
                 </div>
-                <div class="right-part">
 
-
-                </div>
             </article>
+            <!--  divider  -->
+            <hr class="solid">
         </div>
 
-
+        <!-- last Col -->
         <div class="col-md-3">
             <section>
                 <div class="followers">
                     <div class="follower">
-                        <h5 class="mb-3 text-uppercase"> Latest from following </h5>
+                        <h5 class="mb-5 text-uppercase"> Latest from following </h5>
                         <img src="../../../assets/images/followers/loka.png" class=" mb-3 userFollower" />
                         <h5 class="lead"> walla Mamdouh </h5>
                     </div>
-
-
                 </div>
                 <div class="topics my-5">
+                    <div class="topic d-flex justify-content-between mb-3">
+                        <h6> Money </h6>
+                        <button class="btn btn-success" type="button ">Follow </button>
+                    </div>
+                    <div class="topic d-flex justify-content-between mb-3">
+                        <h6> Artificial Intelligance </h6>
+                        <button class="btn btn-success" type="button ">Follow </button>
+                    </div>
                     <div class="topic d-flex justify-content-between">
-                        <h4> Money </h4>
+                        <h6> Machine Learning </h6>
                         <button class="btn btn-success" type="button ">Follow </button>
                     </div>
 
@@ -75,7 +97,6 @@
         </div>
 
     </div>
-
     <hr class="solid" />
 </div>
 
