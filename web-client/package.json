@@ -21,6 +21,7 @@
     "@angular/router": "~11.0.1",
     "@auth0/angular-jwt": "^5.0.2",
     "@fortawesome/fontawesome-free": "^5.15.1",
+    "@ng-bootstrap/ng-bootstrap": "^8.0.0",
     "@types/facebook-js-sdk": "^3.3.1",
     "bootstrap": "^4.5.3",
     "font-awesome": "^4.7.0",
