@@ -8,12 +8,14 @@ import  {AuthGuard} from "./guards"
 import { PlanComponent } from './components/plan/plan.component';
 import { AdminComponent } from './components/admin/admin.component';
 import {  RoleGuardService as RoleGuard } from './guards/role-gservice.guard';
+import { UserComponent } from './components/user/user.component';
 const appRoutes: Routes = [
   { path: '', component: HomeComponent  , canActivate: [AuthGuard] },
   { path: 'plan', component: PlanComponent },
   { path: 'login', component: LogInComponent },
   { path: 'register', component: RegisterComponent },
-  // { path: 'home',   redirectTo: '/me', pathMatch: 'full' }, 
+  { path: 'user', component: UserComponent },
+  // { path: 'user',   redirectTo: '/me', pathMatch: 'full' }, 
   { 
     path: 'admin', 
     component: AdminComponent, 
