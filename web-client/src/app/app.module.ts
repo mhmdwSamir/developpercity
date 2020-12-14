@@ -22,6 +22,7 @@ import { PlanDpayComponent } from './components/plan-dpay/plan-dpay.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { UserComponent } from './components/user/user.component';
+import { TrimDirective } from './shared/directives/trim.directive';
 
 
 export function tokenGetter() {
@@ -44,6 +45,7 @@ console.log(localStorage.getItem("access_token"))
     PlanDpayComponent,
     AdminComponent,
     UserComponent,
+    TrimDirective,
 
   ],
   imports: [

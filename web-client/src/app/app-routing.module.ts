@@ -11,11 +11,11 @@ import {  RoleGuardService as RoleGuard } from './guards/role-gservice.guard';
 import { UserComponent } from './components/user/user.component';
 const appRoutes: Routes = [
   { path: '', component: HomeComponent  , canActivate: [AuthGuard] },
+  { path: 'home',   redirectTo: '', pathMatch: 'full' }, 
   { path: 'plan', component: PlanComponent },
   { path: 'login', component: LogInComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'user', component: UserComponent },
-  // { path: 'user',   redirectTo: '/me', pathMatch: 'full' }, 
   { 
     path: 'admin', 
     component: AdminComponent, 
