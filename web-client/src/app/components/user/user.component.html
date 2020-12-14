@@ -37,7 +37,7 @@
 
 
 <!--  end  navbar   -->
-
+<!-- start user body   -->
 
 <div class="container">
     <div class="row my-5">
@@ -54,32 +54,57 @@
 
         </div>
         <div class="col-md-8 offset-md-1 rightSide">
-            <article>
-                <span class="text-muted my-4"> 7 April
-                  <i class="fa fa-star"> </i>
-                </span>
-                <h2> Lorem ipsum dolor sit amet. </h2>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus ipsa nostrum, ad eaque saepe eius.
-                </p>
-                <p class=" w-100">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit praesentium, beatae laboriosam officiis quasi quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit praesentium, beatae laboriosam officiis quasi quod.
-                </p>
-                <p class=" w-100">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit praesentium, beatae laboriosam officiis quasi quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit praesentium, beatae laboriosam officiis quasi quod.
-                </p>
-                <p class=" w-100">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit praesentium, beatae laboriosam officiis quasi quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit praesentium, beatae laboriosam officiis quasi quod.
-                </p>
-                <p class=" w-100">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit praesentium, beatae laboriosam officiis quasi quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit praesentium, beatae laboriosam officiis quasi quod.
-                </p>
+            <section>
 
-            </article>
+                <article>
+                    <span class="text-muted blockquote"> 7 April<i class="fa fa-star"> </i> </span>
+                    <h2> Lorem ipsum dolor sit amet. </h2>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus ipsa nostrum, ad eaque saepe eius.
+                    </p>
+                    <p class=" w-100">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit praesentium, beatae laboriosam officiis quasi quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit praesentium, beatae laboriosam officiis quasi quod.
+                    </p>
+                    <p class=" w-100">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit praesentium, beatae laboriosam officiis quasi quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit praesentium, beatae laboriosam officiis quasi quod.
+                    </p>
+                </article>
+                <footer class="d-flex justify-content-between ">
+                    <div>
+                        <i (click)="doSome()" class="fas fa-thumbs-up fa-2x mr-3"></i>
+                        <i (click)="doSome()" class="fas fa-reply fa-2x"></i>
+                    </div>
+                    <div class="d-flex">
+                        <i (click)="doSome()" class="fas fa-save fa-2x mr-2"></i>
 
+                        <div class="dropdown">
+                            <!-- <button  aria-expanded="false">
+                             
+                            </button> -->
+                            <i (click)="doSome()" data-bs-toggle="dropdown" id="dropdownMenuButton" class="fab fa-slideshare fa-2x dropdown-toggle"></i>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li><a class="dropdown-item" routerLink="">facebook</a></li>
+                                <li><a class="dropdown-item" routerLink="">GitHub</a></li>
+                                <li>
+                                    <a class="dropdown-item" routerLink="">LinkedIn</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" routerLink="">CopyLink</a>
+                                </li>
+                            </ul>
+                        </div>
 
+                    </div>
+
+                </footer>
+            </section>
+            <li class="divider"></li>
         </div>
+
+
     </div>
 
 
 </div>
+
+<!-- end user body   -->
