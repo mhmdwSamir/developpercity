@@ -8,29 +8,41 @@
 
     </div>
 
-    <div class="row my-2">
+    <div class="row mb-2">
         <div class="col-6">
-            <h1> DEVCITY </h1>
+            <div class="d-flex border">
+                <img src="../../../assets/images/devcity-logo.png" class="logo mr-2 mt-2" />
+                <h1> DEVCITY </h1>
+            </div>
         </div>
         <div class="col-6 text-right">
             <ul class="list-inline">
-                <li class="list-inline-item mx-2">About</li>
-                <li class="list-inline-item">Help</li>
-                <li class="list-inline-item ml-2">Legal</li>
-
+                <li class="list-inline-item mx-2">
+                    <a routerLink="/about"> About </a>
+                </li>
+                <li class="list-inline-item">
+                    <a routerLink="/about"> Help </a>
+                </li>
+                <li class="list-inline-item ml-2">
+                    <a routerLink="/about"> Legal </a>
+                </li>
             </ul>
         </div>
     </div>
+    <!-- copy wright footer  -->
+    <app-divider></app-divider>
+    <div class="row  align-items-end">
+        <div class="container">
+            <p class="text-capitalize text-center lead ">
+                &copy; All Copy rights are reserved to &hearts; LOKA &hearts; Corporation
+            </p>
+        </div>
 
-
+    </div>
 </div>
 
-<div class="s_footer mt-3">
-    <p class="text-center">
-        &copy; All Copy rights are reserved to &hearts; Loka Corporation
-    </p>
 
-</div>
+
 
 
 <!--  End footer Component -->
