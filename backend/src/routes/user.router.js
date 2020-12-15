@@ -21,17 +21,13 @@ router.get('/logOut', (req, res) => {
 });
 router.get('/logOutAllDevices', (req, res) => {
     // logic
-    // console.log(token)
-    // req.user.deleteToken(req.token,(err,user)=>{
-    //   if(err) return res.status(400).send(err);
-    //   res.sendStatus(200);
-    // });
+    // remove from redis cache all tokens stored for current user.
     res.send('User will be Log Ou from all Devices ')
-
 });
 //  add capibality to upload file | img by user   || image 
 router.patch(
     '/upload',
+    requireAuth,
     fileUploadPipe({
         path: 'images/user-avatars',
         fileNameCb: (file, req) => {

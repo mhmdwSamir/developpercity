@@ -1,14 +1,20 @@
 const jwt = require('jsonwebtoken');
 const http_status_code = require('./../helpers/http_status_code');
+const { Exception } = require('./../core/Exception/Exception');
 
 module.exports = async (req, res, next) => {
     try {
         // 1-  Getting token and check of it is there 
         let token = req.headers.authorization;
         if (!token) {
-            console.log('there is no token')
             res.status(http_status_code.Unauthorized)
-                .send(new Exception('Please Login to get access', http_status_code.Unauthorized, 'SWkl5254r'));
+                .send(
+                    new Exception(
+                        'Please Login to get access',
+                        http_status_code.Unauthorized,
+                        'SWkl5254r'
+                    )
+                );
         }
 
         if (token && token.startsWith('Bearer')) {
@@ -22,15 +28,33 @@ module.exports = async (req, res, next) => {
         } catch (exc) {
             if (exc instanceof jwt.TokenExpiredError) {
                 res.status(http_status_code.Unauthorized)
-                    .send(new Exception('Token expired', http_status_code.Unauthorized, 'TxAPed522'));
+                    .send(
+                        new Exception(
+                            'Token expired',
+                            http_status_code.Unauthorized,
+                            'TxAPed522'
+                        )
+                    );
             } else {
                 res.status(http_status_code.Unauthorized)
-                    .send(new Exception('invalid token', http_status_code.Unauthorized, 'INV@_RFM'));
+                    .send(
+                        new Exception(
+                            'invalid token',
+                            http_status_code.Unauthorized,
+                            'INV@_RFM'
+                        )
+                    );
             }
         }
         if (!decoded) {
             res.status(http_status_code.Unauthorized)
-                .send(new Exception('invalid token', http_status_code.Unauthorized, 'INV@_RFM'));
+                .send(
+                    new Exception(
+                        'invalid token',
+                        http_status_code.Unauthorized,
+                        'INV@_RFM'
+                    )
+                );
         }
 
         // 3-  check if user still exist 
@@ -48,7 +72,7 @@ module.exports = async (req, res, next) => {
         req.user = existingUser;
         // 5-  then next()   will  continue 
         next()
-    } catch (ex) {
+    } catch (exc) {
         console.log(exc)
         res.status(500).send(' Some thing May Be Wrong  ~!!! ')
     }
