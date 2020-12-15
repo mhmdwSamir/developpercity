@@ -1,0 +1,10 @@
+<ul class="nav">
+    <!-- <li class="nav-item">
+        <a class="nav-link active" href="#">Home</a>
+    </li> -->
+    <!-- alterNative way  -->
+    <li class="nav-item" *ngFor="let nav_item of navItems">
+        <a class="nav-link text-uppercase " [routerLink]="nav_item"> {{nav_item}}</a>
+    </li>
+
+</ul>

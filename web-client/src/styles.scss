@@ -26,14 +26,6 @@ i {
     cursor: pointer;
 }
 
-.form-check {
-    display: block;
-}
-
-.special {
-    height: 550px;
-}
-
 button {
     border-radius: none !important;
 }
@@ -63,4 +55,13 @@ button {
     background-color: #fa9579;
     color: #fff;
     border-color: none;
+}
+
+.avatar {
+    width: 70px;
+    height: 70px;
+    border: 1px solid black;
+    text-align: center;
+    line-height: 70px;
+    border-radius: 50%;
 }

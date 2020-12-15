@@ -31,6 +31,9 @@ import { TrendItemComponent } from './shared/trend-item/trend-item.component';
 import { HeaderSectionComponent } from './shared/header-section/header-section.component';
 import { TrendingSectionComponent } from './shared/trending-section/trending-section.component';
 import { FooterItemComponent } from './shared/footer-item/footer-item.component';
+import { NavListComponent } from './components/nav-list/nav-list.component';
+import { ArticlesSectionComponent } from './components/articles-section/articles-section.component';
+import { ArticleSectionComponent } from './components/article-section/article-section.component';
 
 
 export function tokenGetter() {
@@ -62,6 +65,9 @@ console.log(localStorage.getItem("access_token"))
     HeaderSectionComponent,
     TrendingSectionComponent,
     FooterItemComponent,
+    NavListComponent,
+    ArticlesSectionComponent,
+    ArticleSectionComponent,
 
   ],
   imports: [
