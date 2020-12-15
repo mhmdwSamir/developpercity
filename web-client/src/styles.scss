@@ -2,6 +2,7 @@
 
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
+//  Global  
 * {
     font-family: monaco;
 }
@@ -14,17 +15,16 @@ input {
     }
 }
 
-i {
-    cursor: pointer;
+.btn:focus,
+textarea:focus,
+select:focus {
+    // outline: none !important;
+    // outline-width: 0 !important;
+    box-shadow: none !important;
 }
 
-hr {
-    // display: block;
-    // height: 1px;
-    // border: 0;
-    // border-top: 1px solid rgb(8, 0, 0);
-    // margin: 1em 0;
-    // padding: 0;
+i {
+    cursor: pointer;
 }
 
 .special {
@@ -32,11 +32,11 @@ hr {
 }
 
 button {
-    border-radius: 0 !important;
+    border-radius: none !important;
 }
 
 .bg_Color {
-    background-color: #184914 !important;
+    background-color: #fa9579 !important;
     color: #fff;
     padding: 2px 0 !important;
     width: 120px !important;
@@ -47,8 +47,17 @@ button {
 }
 
 .logo {
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
     border: 1px solid black;
     padding: 3px;
+    letter-spacing: 5px;
+    margin-top: -5px;
+}
+
+.btn {
+    border-radius: 0;
+    background-color: #fa9579;
+    color: #fff;
+    border-color: none;
 }

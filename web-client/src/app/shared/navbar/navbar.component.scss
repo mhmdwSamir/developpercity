@@ -5,12 +5,39 @@
 
 input {
     background-color: transparent;
+    width: 50px;
+    border: 1px solid black;
 }
 
 #search {
-    height: auto;
+    // height: auto;
     font-size: 18px;
     border: 1px solid black;
     text-transform: uppercase;
-    color: #fff;
+    color: gray;
+    border-radius: 0;
+}
+
+.navbar-nav {
+    height: 40px;
+}
+
+.userImg {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+}
+
+button {
+    border-radius: none!important;
+}
+
+a {
+    color: #6B76CB;
+}
+
+.navbar-brand {
+    letter-spacing: 3px;
+    font-size: 30px;
+    font-weight: bold;
 }
