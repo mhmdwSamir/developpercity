@@ -9,12 +9,28 @@
     <div class="topics my-5">
         <div class="topic d-flex justify-content-between mb-3">
             <h6> Money </h6>
-            <button class="btn btn-success" type="button ">Follow </button>
+            <button #state class="btn btn-success" type="button ">Follow </button>
         </div>
+
+
+        <!-- <input #phone placeholder="phone number" />
+
+        lots of other elements -->
+
+        <!-- phone refers to the input element; pass its `value` to an event handler
+        <button (click)="callPhone(phone.value)">Call</button> -->
+
+
         <div class="topic d-flex justify-content-between mb-3">
             <h6> Artificial Intelligance </h6>
-            <button class="btn btn-success" type="button ">Follow </button>
+            <button (click)="changeFstate($event.target.value)" class="btn bg_Color" type="button">Follow </button>
         </div>
+
+
+
+
+
+
         <div class="topic d-flex justify-content-between">
             <h6> Machine Learning </h6>
             <button class="btn btn-success" type="button ">Follow </button>

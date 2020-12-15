@@ -28,6 +28,8 @@ import { ArticleComponent } from './shared/article/article.component';
 import { FollowerComponent } from './shared/follower/follower.component';
 import { MainArticleComponent } from './shared/main-article/main-article.component';
 import { TrendItemComponent } from './shared/trend-item/trend-item.component';
+import { HeaderSectionComponent } from './shared/header-section/header-section.component';
+import { TrendingSectionComponent } from './shared/trending-section/trending-section.component';
 
 
 export function tokenGetter() {
@@ -56,6 +58,8 @@ console.log(localStorage.getItem("access_token"))
     FollowerComponent,
     MainArticleComponent,
     TrendItemComponent,
+    HeaderSectionComponent,
+    TrendingSectionComponent,
 
   ],
   imports: [

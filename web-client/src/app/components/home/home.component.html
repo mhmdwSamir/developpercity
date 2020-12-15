@@ -1,5 +1,5 @@
 <!--   Start navbaR   -->
-<app-navbar> </app-navbar>
+<!-- <app-navbar> </app-navbar> -->
 <!--   end navbar   -->
 
 
@@ -12,10 +12,11 @@
 <router-outlet></router-outlet>
 <!-- end  DIRECTION  -->
 
-<hr/>
 
-<!-- start HOME PAGE **************************************-->
+
+<!-- ******************* START HOME PAGE *********************** -->
 <div class="container">
+    <!-- start  Main Section    -->
     <div class="special row my-5">
         <!-- start col -->
         <div class="col-md-4">
@@ -34,45 +35,18 @@
             <app-follower></app-follower>
         </div>
     </div>
+    <!-- end  Main Section    -->
     <app-divider></app-divider>
     <!--  start tranding section   -->
+    <app-header-section></app-header-section>
+    <app-trending-section></app-trending-section>
+    <app-divider></app-divider>
 
-    <div class="row">
-        <div class="col-md-4">
-            <!-- start tranding item -->
-            <div class="section_trending">
-                <div class="head d-flex my-5">
-                    <i class="fa fa-circle fa-2x mr-2"></i>
-                    <h4 class="trending text-uppercase"> Trending on DEVCITY </h4>
-                </div>
-                <div class="body d-flex justify-content-between">
-                    <div class="number mr-2">
-                        <span class="trending_numb text-muted">  01</span>
-                    </div>
-                    <div class="content">
-                        <img src="" class="" />
-                        <h5 class="text-uppercase"> tim dening in the asent </h5>
-                        <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore ea voluptatum qui. </p>
-                    </div>
-                </div>
-                <div class="footer d-flex justify-content-end">
-                    <span class="small text-muted"> Dec13 . 6min read <i class="fa fa-star"></i> </span>
-                </div>
-
-            </div>
-
-        </div>
-        <div class="col-md-4"></div>
-        <div class="col-md-4"></div>
-
-    </div>
-
-    <!--  End tranding section   -->
 </div>
 
-<!-- END  HOME PAGE -->
+<!-- ******************* END HOME PAGE *********************** -->
 
 
 <!--  start footer   -->
-<app-footer></app-footer>
+<!-- <app-footer></app-footer> -->
 <!--  end footer   -->
