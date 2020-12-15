@@ -20,7 +20,7 @@ import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { PlanComponent } from './components/plan/plan.component';
 import { PlanDpayComponent } from './components/plan-dpay/plan-dpay.component';
 import { AdminComponent } from './components/admin/admin.component';
-import { JwtHelperService } from '@auth0/angular-jwt';
+
 import { UserComponent } from './components/user/user.component';
 import { TrimDirective } from './shared/directives/trim.directive';
 import { DividerComponent } from './shared/divider/divider.component';
@@ -34,6 +34,8 @@ import { FooterItemComponent } from './shared/footer-item/footer-item.component'
 import { NavListComponent } from './components/nav-list/nav-list.component';
 import { ArticlesSectionComponent } from './components/articles-section/articles-section.component';
 import { ArticleSectionComponent } from './components/article-section/article-section.component';
+import { AboutComponent } from './nav-list-coms/about/about.component';
+
 
 
 export function tokenGetter() {
@@ -68,7 +70,7 @@ console.log(localStorage.getItem("access_token"))
     NavListComponent,
     ArticlesSectionComponent,
     ArticleSectionComponent,
-
+    AboutComponent,
   ],
   imports: [
     BrowserModule,

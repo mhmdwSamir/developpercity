@@ -9,12 +9,15 @@ import { PlanComponent } from './components/plan/plan.component';
 import { AdminComponent } from './components/admin/admin.component';
 import {  RoleGuardService as RoleGuard } from './guards/role-gservice.guard';
 import { UserComponent } from './components/user/user.component';
+import { AboutComponent } from './nav-list-coms/about/about.component';
 const appRoutes: Routes = [
   { path: '', component: HomeComponent  , canActivate: [AuthGuard] },
   { path: 'home',   redirectTo: '', pathMatch: 'full' }, 
   { path: 'plan', component: PlanComponent },
   { path: 'login', component: LogInComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
+  { path: 'about', component: AboutComponent  },
   { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
   { 
     path: 'admin', 
