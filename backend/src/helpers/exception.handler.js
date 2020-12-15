@@ -1,2 +1,1 @@
-module.exports = (err, res) => 
-res.status(err.statusCode || 500).send(err);
+module.exports = (err, res) => res.status(err.statusCode || 500).send(err);

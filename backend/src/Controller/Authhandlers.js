@@ -1,16 +1,16 @@
-// require('dotenv').config({ path: "./config.env" });
-const User = require("../models/user.model");
+// require('dotenv').config({ path: './config.env' });
+const User = require('../models/user.model');
 const bcrypt = require('bcrypt');
-const { Exception } = require("../core/Exception/Exception");
-const http_status_code = require("../helpers/http_status_code")
-const { createToken } = require("./globalAuth");
+const { Exception } = require('../core/Exception/Exception');
+const http_status_code = require('../helpers/http_status_code')
+const { createToken } = require('./globalAuth');
 
 
 // { name , email , password , role }   ||   name & email
 const filterObj = (obj, ...allowedFeilds) => {
     const newObj = {};
     Object.keys(obj).forEach(ele => {
-        console.log("ele", ele)
+        console.log('ele', ele)
         if (allowedFeilds.includes(ele)) newObj[ele] = obj[ele]
 
     });
@@ -31,7 +31,7 @@ const createSendToken = (user, stateCode, res) => {
     res.cookie('Jwt', token, options);
     console.log('cookie created successfully');
     res.status(stateCode).send({
-        status: "success",
+        status: 'success',
         token,
         data: {
             user
@@ -43,12 +43,12 @@ const createSendToken = (user, stateCode, res) => {
 
 
 module.exports = {
-    getAllUsers: async(req, res, next) => {
+    getAllUsers: async (req, res, next) => {
         try {
             let userList = await User.find();
 
             res.status(200).send({
-                status: "SuccessFul Operation",
+                status: 'SuccessFul Operation',
                 results: userList.length,
                 data: userList
             })
@@ -56,19 +56,21 @@ module.exports = {
             res.status(404).send({ ex })
         }
     },
-    signUp: async(req, res, next) => {
+    signUp: async (req, res, next) => {
         try {
             // VALIDATE REQ.BODY
             // get data from user 
             let { name, email, password, role } = req.body;
 
-            if (!name || !email || !password) throw new Exception('Please Provide | name | emmail | password | role', http_status_code.BadRequest, 'jjherYq24')
-                //Is there is  a user registered by this email ? 
+            if (!name || !email || !password) {
+                throw new Exception('Please Provide | name | emmail | password | role', http_status_code.BadRequest, 'jjherYq24')
+            }
+            //Is there is  a user registered by this email ? 
             let userExist = await User.findOne({ email });
             // If there is
-            console.log("userExist", userExist)
+            console.log('userExist', userExist)
             if (userExist) {
-                throw new Exception("User Already Registred !!  Login Now", http_status_code.Conflict, "hyUYH14I")
+                throw new Exception('User Already Registred !!  Login Now', http_status_code.Conflict, 'hyUYH14I')
             }
             let user = await User.create({ name, email, password, role })
 
@@ -76,7 +78,7 @@ module.exports = {
             let token = createToken(user._id);
             user = await user.save()
             res.status(200).send({
-                status: "success Sign up Operation",
+                status: 'success Sign up Operation',
                 data: {
                     token,
                     user
@@ -88,7 +90,7 @@ module.exports = {
             res.status(404).send({ ex })
         }
     },
-    logIn: async(req, res, next) => {
+    logIn: async (req, res, next) => {
         try {
 
             let { email, password } = req.body;
@@ -96,22 +98,22 @@ module.exports = {
             if (!email || !password) {
                 throw new Exception('Please Provide Email & password ', http_status_code.BadRequest, 'AQwOOq84')
             }
-            let user = await User.findOne({ email }).select("+password");
-            console.log(" user ", user)
-                //let correctPass = user.checkCorrectPassword(password, user.password)
+            let user = await User.findOne({ email }).select('+password');
+            console.log(' user ', user)
+            //let correctPass = user.checkCorrectPassword(password, user.password)
             console.log(password)
-            console.log("user passwordS", user.password)
+            console.log('user passwordS', user.password)
             const result = await bcrypt.compare(password, user.password)
 
-            console.log("correct pass : result", result)
+            console.log('correct pass : result', result)
 
-            if (!user) { throw new Exception("Email or password may be incorrect", http_status_code.BadRequest, "KUJIJ2c26"); }
+            if (!user) { throw new Exception('Email or password may be incorrect', http_status_code.BadRequest, 'KUJIJ2c26'); }
 
             // create  token to user 
 
             let token = createToken(user._id);
             res.status(200).json({
-                status: "successful login Operation ",
+                status: 'successful login Operation ',
                 data: {
                     user,
                     token
@@ -124,42 +126,42 @@ module.exports = {
     },
     // ability &&  restric to current user
     //to update his data [ password , name ]  || not all data
-    updateMe: async(req, res, next) => {
+    updateMe: async (req, res, next) => {
         try {
             // 1- create error if user  POSTS password Data
             console.log(req.user.password)
             if (!req.user.password) throw new Exception(`
                this route is not for passwords Update . Please use /updateMyPasswoed
-             `, 400, "srtDqdd22")
-                // 2- update user Document
-            let data = filterObj(req.body, "name", "email");
+             `, 400, 'srtDqdd22')
+            // 2- update user Document
+            let data = filterObj(req.body, 'name', 'email');
             const upDatedUser = await User.findByIdAndUpdate(req.user.id, data, {
                 new: true,
                 runValidators: true
             })
             res.status(200).send({
-                status: "Success Update Operation to current User ",
+                status: 'Success Update Operation to current User ',
                 upDatedUser
             })
         } catch (ex) {
             res.status(500).send(ex)
         }
     },
-    updateUser: async() => {
+    updateUser: async () => {
         res.status(500).json({
-            status: "Error",
-            message: " this route is not defined yet  !! "
+            status: 'Error',
+            message: ' this route is not defined yet  !! '
         })
     },
 
     //  aBILITY TO USER TO DELETE HIS ACCOUNT 
-    deleteMe: async(req, res, next) => {
+    deleteMe: async (req, res, next) => {
 
         try {
             const deletedUser = await User.findByIdAndUpdate(req.user.id, { active: false })
             res.status(200).send({
-                status: "Success delete Operation to current User ",
-                Note: " User Still In Db ",
+                status: 'Success delete Operation to current User ',
+                Note: ' User Still In Db ',
                 deletedUser
             })
         } catch (ex) {
