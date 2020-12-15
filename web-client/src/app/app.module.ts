@@ -30,6 +30,7 @@ import { MainArticleComponent } from './shared/main-article/main-article.compone
 import { TrendItemComponent } from './shared/trend-item/trend-item.component';
 import { HeaderSectionComponent } from './shared/header-section/header-section.component';
 import { TrendingSectionComponent } from './shared/trending-section/trending-section.component';
+import { FooterItemComponent } from './shared/footer-item/footer-item.component';
 
 
 export function tokenGetter() {
@@ -60,6 +61,7 @@ console.log(localStorage.getItem("access_token"))
     TrendItemComponent,
     HeaderSectionComponent,
     TrendingSectionComponent,
+    FooterItemComponent,
 
   ],
   imports: [

@@ -1,0 +1,8 @@
+<div class="col-md-4 ">
+    <div *ngFor="let footer_item of footer_items_data">
+        <h4 class="text-uppercase"> {{footer_item.title}} </h4>
+        <p class="text-muted" style="font-size: 15px;"> {{footer_item.body}} </p>
+        <a [routerLink]="footer_item.route"> {{footer_item.routeText}} </a>
+
+    </div>
+</div>
