@@ -1,26 +1,29 @@
 <div class="container">
-    <div class="row my-5 text-center ">
+    <div class="row ">
         <div>
             <h1> DEVCITY </h1>
-            <p> pla pla pla ❣️❣️❣️❣️❣️................ </p>
+            <p> pla pla pla pla pla pla pla pla pla ❣️❣️❣️❣️❣️........</p>
         </div>
+    </div>
+    <div class="row flex-column my-3">
 
-        <div class="form-check">
+        <div class="plan  text-center py-5 mb-3 mx-auto">
             <input (click)="showDetailplan()" class="form-check-input" type="radio" name="exampleRadios" id="plan1" value="monthly">
             <label class="form-check-label" for="plan1">
                    Monthly
-                   <span class="text-muted"> $5 / month </span>
+                   <span class="text-muted lead "> $5/month </span>
             </label>
         </div>
 
 
-        <div class="form-check">
+        <div class="plan text-center py-5  mx-auto">
             <input class="form-check-input" type="radio" name="exampleRadios" id="plan2" value="annualy">
-            <label class="form-check-label" for="plan2">
+            <label class="form-check-label lead" for="plan2">
                 Annualy
-                   <span class="text-muted"> $50 / Annualy </span>
+                   <span class="text-muted lead"> $50/Annualy </span>
                 </label>
         </div>
+
     </div>
     <div class="row" *ngIf="showDP">
         <app-plan-dpay></app-plan-dpay>
