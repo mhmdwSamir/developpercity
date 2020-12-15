@@ -53,7 +53,6 @@ UserSchema.virtual('task', { // relation => one to many
 
 const saltRounds = 10;
 UserSchema.methods.toJSON = function () {
-    let user = this;
     const user = Object.assign({}, this);
     user.id = user._id;
     delete user._id;

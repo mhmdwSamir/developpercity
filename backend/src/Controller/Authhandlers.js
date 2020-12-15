@@ -148,8 +148,8 @@ module.exports = class AuthController extends BaseController {
 
     async updateUser() {
         res.status(500).json({
-            status: "Error",
-            message: " this route is not defined yet  !! "
+            status: 'Error',
+            message: ' this route is not defined yet  !! '
         })
     }
 

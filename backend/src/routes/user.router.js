@@ -37,6 +37,6 @@ router.patch(
     .single('avatar'),
     (req, res) => {
         res.status(200).send({ upload: 'success' });
-    })
+    });
 
 module.exports = router;
