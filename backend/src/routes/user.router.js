@@ -1,23 +1,21 @@
 const express = require('express');
 const router = express.Router();
 
-const Authhandlers = require('../Controller/Authhandlers');
+const { AuthController } = require('../Controller');
+const authController = new AuthController();
 const { forgetPassword, resetPassword } = require('../Controller/globalAuth');
 const { excuteHandler, requireAuth } = require('../middlewares');
 const { fileUploadPipe } = require('../middlewares/pipes');
 
-router.post('/signUp', excuteHandler(Authhandlers.signUp));
-router.post('/logIn', excuteHandler(Authhandlers.logIn));
-router.patch('/updateMe', requireAuth, excuteHandler(Authhandlers.updateMe));
-router.delete('/deleteMe', requireAuth, excuteHandler(Authhandlers.deleteMe));
-router.get('/getAllUsers', excuteHandler(Authhandlers.getAllUsers));
+router.post('/signUp', excuteHandler(authController.signUp));
+router.post('/logIn', excuteHandler(authController.logIn));
+router.patch('/updateMe', requireAuth, excuteHandler(authController.updateMe));
+router.delete('/deleteMe', requireAuth, excuteHandler(authController.deleteMe));
+router.get('/user/all', excuteHandler(authController.getAllUsers));
 router.post('/forgetPassword', excuteHandler(forgetPassword));
 router.post('/resetPassword/:token', excuteHandler(resetPassword));
 router.get('/logOut', (req, res) => {
-
-    // const logORes = req.logout();
-    console.log(req.user)
-    res.send(req.user)
+    res.send('Unhandled route');
 });
 router.get('/logOutAllDevices', (req, res) => {
     // logic

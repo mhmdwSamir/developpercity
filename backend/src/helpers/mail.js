@@ -2,7 +2,7 @@ require('dotenv').config({ path: "./config.env" });
 const nodemailer = require("nodemailer");
 
 // async..await is not allowed in global scope, must use a wrapper
-const sendEmail = async(options) => {
+const sendEmail = async (options) => {
     try {
         // createTransport
         const transporter = nodemailer.createTransport({
@@ -22,7 +22,7 @@ const sendEmail = async(options) => {
             text: options.message
         });
         console.log("From Options Mail", options.mail)
-            //- acually send the mail
+        //- acually send the mail
         await transporter.sendMail(mailOptions) // 
     } catch (ex) {
         console.log(ex)

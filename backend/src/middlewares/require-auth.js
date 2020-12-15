@@ -7,7 +7,7 @@ module.exports = async (req, res, next) => {
         // 1-  Getting token and check of it is there 
         let token = req.headers.authorization;
         if (!token) {
-            res.status(http_status_code.Unauthorized)
+            return res.status(http_status_code.Unauthorized)
                 .send(
                     new Exception(
                         'Please Login to get access',
@@ -27,7 +27,7 @@ module.exports = async (req, res, next) => {
             decoded = jwt.verify(token, process.env.JWT_SECRET);
         } catch (exc) {
             if (exc instanceof jwt.TokenExpiredError) {
-                res.status(http_status_code.Unauthorized)
+                return res.status(http_status_code.Unauthorized)
                     .send(
                         new Exception(
                             'Token expired',
@@ -36,7 +36,7 @@ module.exports = async (req, res, next) => {
                         )
                     );
             } else {
-                res.status(http_status_code.Unauthorized)
+                return res.status(http_status_code.Unauthorized)
                     .send(
                         new Exception(
                             'invalid token',
@@ -47,7 +47,7 @@ module.exports = async (req, res, next) => {
             }
         }
         if (!decoded) {
-            res.status(http_status_code.Unauthorized)
+            return res.status(http_status_code.Unauthorized)
                 .send(
                     new Exception(
                         'invalid token',
@@ -74,7 +74,7 @@ module.exports = async (req, res, next) => {
         next()
     } catch (exc) {
         console.log(exc)
-        res.status(500).send(' Some thing May Be Wrong  ~!!! ')
+        return res.status(500).send(' Some thing May Be Wrong  ~!!! ')
     }
 
 }

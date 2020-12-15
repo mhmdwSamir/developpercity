@@ -1,8 +1,8 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
-const Exception = require("../core/Exception/Exception");
-const http_status_code = require("../helpers/http_status_code");
+const Exception = require('../core/Exception/Exception');
+const http_status_code = require('../helpers/http_status_code');
 
 const UserSchema = mongoose.Schema({
     name: {
@@ -28,7 +28,7 @@ const UserSchema = mongoose.Schema({
         contentType: String
     },
     role: {
-        type: "String",
+        type: String,
         // required: true,
         enum: ['user', 'modirator', 'contributor', "superVisor", 'admin'],
         default: 'user'
@@ -44,21 +44,25 @@ const UserSchema = mongoose.Schema({
 });
 
 // Build the relation
-UserSchema.virtual("task", { // relation => one to many 
-    ref: "Task",
-    localField: "_id", // one || sould be primary || table 1 => 
-    foreignField: "owner" // many || sould be forign || table 2 => task Model 
+UserSchema.virtual('task', { // relation => one to many 
+    ref: 'Task',
+    localField: '_id', // one || sould be primary || table 1 => 
+    foreignField: 'owner' // many || sould be forign || table 2 => task Model 
 
 })
 
 const saltRounds = 10;
-UserSchema.methods.toJson = function() {
+UserSchema.methods.toJSON = function () {
     let user = this;
+    const user = Object.assign({}, this);
+    user.id = user._id;
+    delete user._id;
+    return user;
+};
 
-}
-UserSchema.methods.checkCorrectPassword = async function(candidatePass, userPass) {
-    console.log("candidatePass", candidatePass)
-    console.log("userPass", userPass)
+UserSchema.methods.checkCorrectPassword = async function (candidatePass, userPass) {
+    console.log('candidatePass', candidatePass)
+    console.log('userPass', userPass)
     const result = bcrypt.compare(candidatePass, userPass);
 
     console.log(result)
@@ -66,13 +70,13 @@ UserSchema.methods.checkCorrectPassword = async function(candidatePass, userPass
 
 }
 
-UserSchema.static.getUserCredintials = async function(email, password) {
+UserSchema.static.getUserCredintials = async function (email, password) {
 
     let userExist = await this.findOne({ email });
     if (!userExist) throw new Exception('User is already exist', http_status_code.BadRequest, 'AKkq24')
 
     const checkPass = await bcrypt.compare(password, userExist.password)
-    if (!checkPass) throw new Exception("email or password may be incorrect", http_status_code.BadRequest, "KUJIJ2c26");
+    if (!checkPass) throw new Exception('email or password may be incorrect', http_status_code.BadRequest, 'KUJIJ2c26');
 
     console.log(userExist)
 
@@ -80,13 +84,13 @@ UserSchema.static.getUserCredintials = async function(email, password) {
 
 };
 
-UserSchema.methods.getUserToken = async function() {
-        const user = this;
-        const token = jwt.sign({ _id: user._id.toString() }, "lolaloka")
-        return token
-    }
-    // cannot get it 100%
-UserSchema.methods.changedPasswordAfter = function(JWTTimestamp) {
+UserSchema.methods.getUserToken = async function () {
+    const user = this;
+    const token = jwt.sign({ _id: user._id.toString() }, 'lolaloka')
+    return token
+}
+// cannot get it 100%
+UserSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
     // console.log("JWTTimestamp", JWTTimestamp)
     if (this.passwordChangedAt) {
         const changedTimeStamp = parseInt(this.password.passwordChangedAt.getTime() / 1000, 10)
@@ -98,43 +102,29 @@ UserSchema.methods.changedPasswordAfter = function(JWTTimestamp) {
 
 
 // generate random token to the user 
-UserSchema.methods.createPasswordResetToken = function() {
+UserSchema.methods.createPasswordResetToken = function () {
     // token that will be sent to user  
-    const resetToken = crypto.randomBytes(32).toString("hex");
+    const resetToken = crypto.randomBytes(32).toString('hex');
     // encrepted token 
-    this.passwordResetToken = crypto.createHash("sha256").update(resetToken).digest("hex");
+    this.passwordResetToken = crypto.createHash('sha256').update(resetToken).digest('hex');
 
     this.passwordExpiresAt = Date.now() + 10 * 60 * 1000;
     // console.log({resetToken}, this.passwordResetToken)
     return resetToken;
-
-
-
-
 }
-
-
-
 
 // Add QueryMiddelware
 // UserSchema.pre(/^find/, function(next) {
-
-//     // this here refers to the current query 
-//     // find ely msh equal false
-//     this.find({ active: { $ne: false } })
-
-//     next()
-
+// this here refers to the current query 
+// find ely msh equal false
+// this.find({ active: { $ne: false } })
+// next()
 // })
 
-UserSchema.pre('save', async function() {
+UserSchema.pre('save', async function () {
     let user = this;
     let hashedPassword = await bcrypt.hash(user.password, saltRounds);
     user.password = hashedPassword;
-
 });
 
-
-
-
-module.exports = mongoose.model("User", UserSchema, "User");
+module.exports = mongoose.model('User', UserSchema, 'User');

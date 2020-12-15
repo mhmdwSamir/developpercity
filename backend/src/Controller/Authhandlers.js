@@ -1,10 +1,12 @@
-// require('dotenv').config({ path: './config.env' });
-const User = require('../models/user.model');
 const bcrypt = require('bcrypt');
+
+const User = require('../models/user.model');
 const { Exception } = require('../core/Exception/Exception');
 const http_status_code = require('../helpers/http_status_code')
 const { createToken } = require('./globalAuth');
-
+const { autoBind } = require('./../helpers');
+const BaseController = require('./base-controller');
+const { UserDto } = require('./../dtos/user');
 
 // { name , email , password , role }   ||   name & email
 const filterObj = (obj, ...allowedFeilds) => {
@@ -41,133 +43,123 @@ const createSendToken = (user, stateCode, res) => {
     })
 }
 
+module.exports = class AuthController extends BaseController {
+    constructor() {
+        super();
+        autoBind(this);
+    }
 
-module.exports = {
-    getAllUsers: async (req, res, next) => {
-        try {
-            let userList = await User.find();
+    async getAllUsers(req, res, next) {
+        let userList = await User.find();
 
-            res.status(200).send({
-                status: 'SuccessFul Operation',
-                results: userList.length,
-                data: userList
-            })
-        } catch (ex) {
-            res.status(404).send({ ex })
+        res.status(200).send({
+            status: 'SuccessFul Operation',
+            results: userList.length,
+            data: userList.map(UserDto.toDto)
+        })
+
+    }
+
+    async signUp(req, res, next) {
+        // VALIDATE REQ.BODY
+        // get data from user 
+        let { name, email, password, role } = req.body;
+
+        if (!name || !email || !password) {
+            throw new Exception(
+                'Please Provide | name | emmail | password | role',
+                http_status_code.BadRequest,
+                'jjherYq24'
+            );
         }
-    },
-    signUp: async (req, res, next) => {
-        try {
-            // VALIDATE REQ.BODY
-            // get data from user 
-            let { name, email, password, role } = req.body;
 
-            if (!name || !email || !password) {
-                throw new Exception('Please Provide | name | emmail | password | role', http_status_code.BadRequest, 'jjherYq24')
-            }
-            //Is there is  a user registered by this email ? 
-            let userExist = await User.findOne({ email });
-            // If there is
-            console.log('userExist', userExist)
-            if (userExist) {
-                throw new Exception('User Already Registred !!  Login Now', http_status_code.Conflict, 'hyUYH14I')
-            }
-            let user = await User.create({ name, email, password, role })
-
-            // create new token 
-            let token = createToken(user._id);
-            user = await user.save()
-            res.status(200).send({
-                status: 'success Sign up Operation',
-                data: {
-                    token,
-                    user
-                }
-            })
-
-        } catch (ex) {
-            console.log(ex)
-            res.status(404).send({ ex })
+        // Is there is  a user registered by this email ? 
+        let userExist = await User.findOne({ email });
+        // If there is
+        console.log('userExist', userExist)
+        if (userExist) {
+            throw new Exception('User Already Registred !!  Login Now', http_status_code.Conflict, 'hyUYH14I')
         }
-    },
-    logIn: async (req, res, next) => {
-        try {
+        let user = await User.create({ name, email, password, role })
 
-            let { email, password } = req.body;
-
-            if (!email || !password) {
-                throw new Exception('Please Provide Email & password ', http_status_code.BadRequest, 'AQwOOq84')
+        // create new token 
+        let token = createToken(user._id);
+        user = await user.save()
+        res.status(200).send({
+            status: 'success Sign up Operation',
+            data: {
+                token,
+                user
             }
-            let user = await User.findOne({ email }).select('+password');
-            console.log(' user ', user)
-            //let correctPass = user.checkCorrectPassword(password, user.password)
-            console.log(password)
-            console.log('user passwordS', user.password)
-            const result = await bcrypt.compare(password, user.password)
+        })
 
-            console.log('correct pass : result', result)
+    }
 
-            if (!user) { throw new Exception('Email or password may be incorrect', http_status_code.BadRequest, 'KUJIJ2c26'); }
+    async logIn(req, res, next) {
+        let { email, password } = req.body;
 
-            // create  token to user 
-
-            let token = createToken(user._id);
-            res.status(200).json({
-                status: 'successful login Operation ',
-                data: {
-                    user,
-                    token
-                }
-            })
-        } catch (ex) {
-            console.log(ex)
-            res.status(400).json(ex)
+        if (!email || !password) {
+            throw new Exception('Please Provide Email & password ', http_status_code.BadRequest, 'AQwOOq84')
         }
-    },
+        let user = await User.findOne({ email }).select('+password');
+        console.log(' user ', user)
+        //let correctPass = user.checkCorrectPassword(password, user.password)
+        console.log(password)
+        console.log('user passwordS', user.password)
+        const result = await bcrypt.compare(password, user.password)
+
+        console.log('correct pass : result', result)
+
+        if (!user) {
+            throw new Exception('Email or password may be incorrect', http_status_code.BadRequest, 'KUJIJ2c26');
+        }
+
+        // create  token to user 
+
+        let token = createToken(user._id);
+        res.status(200).json({
+            status: 'successful login Operation ',
+            data: {
+                user,
+                token
+            }
+        })
+    }
+
     // ability &&  restric to current user
-    //to update his data [ password , name ]  || not all data
-    updateMe: async (req, res, next) => {
-        try {
-            // 1- create error if user  POSTS password Data
-            console.log(req.user.password)
-            if (!req.user.password) throw new Exception(`
+    // to update his data [ password , name ]  || not all data
+    async updateMe(req, res, next) {
+        // 1- create error if user  POSTS password Data
+        console.log(req.user.password)
+        if (!req.user.password) throw new Exception(`
                this route is not for passwords Update . Please use /updateMyPasswoed
              `, 400, 'srtDqdd22')
-            // 2- update user Document
-            let data = filterObj(req.body, 'name', 'email');
-            const upDatedUser = await User.findByIdAndUpdate(req.user.id, data, {
-                new: true,
-                runValidators: true
-            })
-            res.status(200).send({
-                status: 'Success Update Operation to current User ',
-                upDatedUser
-            })
-        } catch (ex) {
-            res.status(500).send(ex)
-        }
-    },
-    updateUser: async () => {
-        res.status(500).json({
-            status: 'Error',
-            message: ' this route is not defined yet  !! '
+        // 2- update user Document
+        let data = filterObj(req.body, 'name', 'email');
+        const upDatedUser = await User.findByIdAndUpdate(req.user.id, data, {
+            new: true,
+            runValidators: true
         })
-    },
+        res.status(200).send({
+            status: 'Success Update Operation to current User ',
+            upDatedUser
+        })
+    }
 
-    //  aBILITY TO USER TO DELETE HIS ACCOUNT 
-    deleteMe: async (req, res, next) => {
+    async updateUser() {
+        res.status(500).json({
+            status: "Error",
+            message: " this route is not defined yet  !! "
+        })
+    }
 
-        try {
-            const deletedUser = await User.findByIdAndUpdate(req.user.id, { active: false })
-            res.status(200).send({
+    async deleteMe(req, res, next) {
+        const deletedUser = await User.findByIdAndUpdate(req.user.id, { active: false })
+        res.status(200)
+            .send({
                 status: 'Success delete Operation to current User ',
                 Note: ' User Still In Db ',
                 deletedUser
-            })
-        } catch (ex) {
-
-            res.status(404).send(ex)
-        }
-
+            });
     }
 }

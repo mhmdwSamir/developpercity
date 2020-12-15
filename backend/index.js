@@ -45,44 +45,31 @@ app.use(hpp());
 app.use(express.json({ limit: '10kb' }));
 app.use(limiter);
 app.use(cors());
+
 // routes  
-
 app.use('/api/auth', userRouter);
-
 app.use('/api/articles', articleRouter);
-
 app.use('/api/reviews', reviewRouter);
-
 app.use('/api/events', EventRouter);
-
 
 // requestTime
 app.use((req, res, next) => {
-    req.requestTime = new Date().toISOString();
+    res.setHeader('requestTime', new Date().toISOString());
     next()
-})
-
-
-
-
+});
 //  globalErrorHandler   ||  handle unhandled routes  
 app.use('*', globalErrorHandler);
 
-
-//const PORT = process.env.PORT || 8080;
-
+// const PORT = process.env.PORT || 8080;
 console.log('------♥♥♥♥♥♥--------');
 const port = 3000;
 const server = app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
-})
+});
 
-
-//handle unhandled promise rejections
+// handle unhandled promise rejections
 process.on('unhandledRejection', (err) => {
     console.log(err.name, err.message);
     console.log(' UNHANDLED REJECTION ☹️☹️');
-    server.close(() => {
-        process.exit(1)
-    })
+    server.close(() => { process.exit(1) });
 });
