@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
-import { stat } from 'fs';
+
 
 @Component({
   selector: 'app-follower',

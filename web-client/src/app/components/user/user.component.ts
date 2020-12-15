@@ -12,7 +12,7 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
   }
   doSome(){
-  
+
     console.log("Clicked")
   }
 }
