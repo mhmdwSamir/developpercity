@@ -27,6 +27,7 @@ import { DividerComponent } from './shared/divider/divider.component';
 import { ArticleComponent } from './shared/article/article.component';
 import { FollowerComponent } from './shared/follower/follower.component';
 import { MainArticleComponent } from './shared/main-article/main-article.component';
+import { TrendItemComponent } from './shared/trend-item/trend-item.component';
 
 
 export function tokenGetter() {
@@ -54,6 +55,7 @@ console.log(localStorage.getItem("access_token"))
     ArticleComponent,
     FollowerComponent,
     MainArticleComponent,
+    TrendItemComponent,
 
   ],
   imports: [
