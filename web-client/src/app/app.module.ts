@@ -38,6 +38,7 @@ import { ArticlesSectionComponent } from './components/articles-section/articles
 import { ArticleSectionComponent } from './components/article-section/article-section.component';
 import { AboutComponent } from './nav-list-coms/about/about.component';
 
+import { UserFollowerComponent } from './components/user-follower/user-follower.component';
 
 
 export function tokenGetter() {
@@ -73,6 +74,7 @@ console.log(localStorage.getItem("access_token"))
     ArticlesSectionComponent,
     ArticleSectionComponent,
     AboutComponent,
+    UserFollowerComponent,
   ],
   imports: [
     BrowserModule,

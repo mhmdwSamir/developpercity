@@ -1,11 +1,10 @@
 <section>
-    <div class="followers">
-        <div class="follower">
-            <h5 class="mb-5 text-uppercase"> Latest from following </h5>
-            <img src="../../../assets/images/followers/loka.png" class=" mb-3 userFollower" />
-            <h5 class="lead"> walla Mamdouh </h5>
-        </div>
-    </div>
+    <div class="followers d-flex border">
+    <!-- <app-user-followers></app-user-followers> -->
+   <app-user-follower></app-user-follower>
+    </div> 
+   <!-- <div class="row">
+
     <div class="topics my-5">
         <div class="topic d-flex justify-content-between mb-3">
             <h6> Money </h6>
@@ -20,21 +19,18 @@
         <!-- phone refers to the input element; pass its `value` to an event handler
         <button (click)="callPhone(phone.value)">Call</button> -->
 
-
+<!-- 
         <div class="topic d-flex justify-content-between mb-3">
             <h6> Artificial Intelligance </h6>
-            <button (click)="changeFstate($event.target.value)" class="btn bg_Color" type="button">Follow </button>
+            <button  class="btn bg_Color" type="button">Follow </button>
         </div>
 
-
-
-
-
-
-        <div class="topic d-flex justify-content-between">
+       <div class="topic d-flex justify-content-between">
             <h6> Machine Learning </h6>
             <button class="btn btn-success" type="button ">Follow </button>
         </div>
 
     </div>
+
+   </div>  -->
 </section>

@@ -8,9 +8,7 @@
 <!-- end notification -->
 
 
-<!-- START  DIRECTION  -->
-<router-outlet></router-outlet>
-<!-- end  DIRECTION  -->
+
 
 
 
@@ -31,13 +29,50 @@
         </div>
         <!-- last Col -->
         <div class="col-md-3">
-            <!-- render all Follower InFO -->
-            <app-follower></app-follower>
+            <!-- render all Followers  InFO -->
+           
+            <app-user-follower></app-user-follower>
+
+            <!--  Start Section topics  -->
+            <div class="row">
+            <!-- start Topics -->
+                <div class="topics my-5">
+                    <!--  Start  of individual topic   -->
+                    <div class="topic d-flex justify-content-between mb-3">
+                        <h6> Money </h6>
+                        <button class="btn btn-success" type="button ">Follow </button>
+                    </div>
+                    <!--End of individual topic   -->
+            
+            
+                    <div class="topic d-flex justify-content-between mb-3">
+                        <h6> Artificial Intelligance </h6>
+                        <button class="btn bg_Color" type="button">Follow </button>
+                    </div>
+            
+                   <div class="topic d-flex justify-content-between">
+                        <h6> Machine Learning </h6>
+                        <button class="btn btn-success" type="button ">Follow </button>
+                    </div>
+                    <!-- <input #phone placeholder="phone number" />
+            
+                    lots of other elements -->
+            
+                    <!-- phone refers to the input element; pass its `value` to an event handler
+                    <button (click)="callPhone(phone.value)">Call</button> -->
+            
+            
+            
+                </div>
+            
+            </div>
+
+            <!--  End Section topics  -->
         </div>
     </div>
-    <!-- end  Main head Section    -->
+    <!-- End  Main head Section    -->
     <app-divider></app-divider>
-    <!--  start tranding section   -->
+    <!--  Start tranding section   -->
     <div class="row">
         <app-header-section></app-header-section>
         <app-trending-section></app-trending-section>
@@ -46,7 +81,7 @@
 
     <app-divider></app-divider>
 
-  <!--  start articles section   -->
+  <!--  Start articles section   -->
    <div class="row">
     <app-articles-section> </app-articles-section>
    </div>
@@ -60,6 +95,11 @@
 
 <!-- ******************* END HOME PAGE *********************** -->
 
+
+
+<!-- START  DIRECTION  -->
+<router-outlet></router-outlet>
+<!-- end  DIRECTION  -->
 
 <!--  start footer   -->
 <!-- <app-footer></app-footer> -->
