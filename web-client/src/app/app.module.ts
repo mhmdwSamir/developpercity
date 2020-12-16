@@ -40,6 +40,8 @@ import { AboutComponent } from './nav-list-coms/about/about.component';
 
 import { UserFollowerComponent } from './components/user-followers/user-followers.component';
 import { TrimNamePipe } from '../core/pipes/trim-name.pipe';
+import { TopicsComponent } from './components/topics/topics.component';
+import { TopicItemComponent } from './components/topic-item/topic-item.component';
 
 
 export function tokenGetter() {
@@ -80,6 +82,8 @@ if(localStorage.getItem("access_token")){
     AboutComponent,
     UserFollowerComponent,
     TrimNamePipe,
+    TopicsComponent,
+    TopicItemComponent,
   ],
   imports: [
     BrowserModule,

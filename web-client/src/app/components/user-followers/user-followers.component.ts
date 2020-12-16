@@ -30,7 +30,7 @@ user:string;
   }
   getFollower(user){
    console.log("User Page ", user)
-   this.router.navigate(['/user','@'+ this.user])
+   this.router.navigate(['/user','@'+user])
 
   }
 }
