@@ -26,20 +26,15 @@ i {
     cursor: pointer;
 }
 
-button {
-    border-radius: none !important;
-}
 
-.bg_Color {
-    background-color: #fa9579 !important;
-    color: #fff;
-    padding: 2px 0 !important;
-    width: 120px !important;
-}
 
-.bg_Color:hover {
-    color: #fff;
-}
+// .bg_Color {
+//     background-color: #fa9579 !important;
+//     color: #fff;
+//     padding: 2px 0 !important;
+//     width: 120px !important;
+// }
+
 
 .logo {
     width: 30px;
@@ -50,11 +45,12 @@ button {
     margin-top: -5px;
 }
 
-.btn {
+.btn,
+.btn-outline-success {
     border-radius: 0;
     background-color: #fa9579;
     color: #fff;
-    border-color: none;
+    border-color: none!important;
 }
 
 .avatar {

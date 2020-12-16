@@ -1,1 +1,6 @@
-<p>topic-item works!</p>
+<div class="topic d-flex justify-content-between mb-3"
+*ngFor="let  topic of topics_items"
+>
+    <h6 class="mr-3"> {{topic.topic_title}} </h6>
+    <button (click)="startFollowing($event,topic)" class="btn" type="button" #followbtn> {{btnText}} </button>
+</div>
