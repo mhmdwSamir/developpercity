@@ -8,27 +8,21 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewContainerR
 })
 export class FollowerComponent implements OnInit , AfterViewInit {
   // @ViewChild('state', {read: ViewContainerRef}) vcf: ViewContainerRef;
-  @ViewChild('state') button;
+  // state:any
+  // @ViewChild('state') button;
 
   
-  constructor(private elRef:ElementRef) {
-    this.elRef.nativeElement}
+  constructor(private elRef:ElementRef) {}
 
   ngOnInit(): void {
-    var el = this.elRef.nativeElement;
-    console.log("from ele" ,el);
+   const  el = this.elRef.nativeElement;
+    // console.log("from ele" ,el);
   }
-  state:any
-  changeFstate(value){
-      console.log("from State " , value)
-      // this.value = "Following"
-    
-  }
-  ngAfterViewInit() {
-    // child is set
-    var div = this.elRef.nativeElement
   
-    console.log("from After view Init ",div)
+  ngAfterViewInit() {
+  
+    const div = this.elRef.nativeElement
+    // console.log("from After view Init ",div)
   }
   
   

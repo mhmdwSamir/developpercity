@@ -7,9 +7,14 @@ import { HomeComponent } from './components/home/home.component';
 import  {AuthGuard} from "./guards"
 import { PlanComponent } from './components/plan/plan.component';
 import { AdminComponent } from './components/admin/admin.component';
-import {  RoleGuardService as RoleGuard } from './guards/role-gservice.guard';
+import {RoleGuardService as RoleGuard } from './guards/role-gservice.guard';
 import { UserComponent } from './components/user/user.component';
 import { AboutComponent } from './nav-list-coms/about/about.component';
+// import { UserFollowerComponent } from './components/user-followers/user-followers.component';
+import { FollowerComponent } from './shared/follower/follower.component';
+
+
+
 
 
 const appRoutes: Routes = [
@@ -18,9 +23,20 @@ const appRoutes: Routes = [
   { path: 'plan', component: PlanComponent },
   { path: 'login', component: LogInComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
-  { path: 'about', component: AboutComponent  },
-  { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
+  { 
+    path: 'user', 
+    component: UserComponent, 
+    canActivate: [AuthGuard] ,
+    children : []
+   },
+   { 
+    path: 'user/:followerName', 
+    component: FollowerComponent, 
+    canActivate: [AuthGuard] ,
+    
+   },
+  { path: 'about', component: AboutComponent , canActivate: [AuthGuard] },
+
   { 
     path: 'admin', 
     component: AdminComponent, 

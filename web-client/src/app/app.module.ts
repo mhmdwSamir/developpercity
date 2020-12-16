@@ -38,11 +38,15 @@ import { ArticlesSectionComponent } from './components/articles-section/articles
 import { ArticleSectionComponent } from './components/article-section/article-section.component';
 import { AboutComponent } from './nav-list-coms/about/about.component';
 
-import { UserFollowerComponent } from './components/user-follower/user-follower.component';
+import { UserFollowerComponent } from './components/user-followers/user-followers.component';
+import { TrimNamePipe } from '../core/pipes/trim-name.pipe';
 
 
 export function tokenGetter() {
-console.log(localStorage.getItem("access_token"))
+// console.log(localStorage.getItem("access_token"))
+if(localStorage.getItem("access_token")){
+   console.log(localStorage.getItem("access_token"))
+}
   return localStorage.getItem("access_token");
 }
 
@@ -75,6 +79,7 @@ console.log(localStorage.getItem("access_token"))
     ArticleSectionComponent,
     AboutComponent,
     UserFollowerComponent,
+    TrimNamePipe,
   ],
   imports: [
     BrowserModule,

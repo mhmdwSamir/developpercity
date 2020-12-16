@@ -1,0 +1,10 @@
+
+<div *ngFor= "let follower of followers_list" >
+
+        <img (click)="getFollower(follower.name)" [src]="follower.imgFollowerPath" class=" mb-3 userFollower" 
+       
+        />
+        <h6 > {{follower.name }}</h6>
+      
+
+</div>
