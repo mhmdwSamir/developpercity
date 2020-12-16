@@ -16,7 +16,7 @@
 
 <!-- ******************* START HOME PAGE *********************** -->
 <div class="container">
-    <!-- start  Main Section    -->
+    <!-- start  Main head Section    -->
     <div class="row my-5">
         <!-- start col -->
         <div class="col-md-4">
@@ -31,20 +31,29 @@
         </div>
         <!-- last Col -->
         <div class="col-md-3">
-            <!-- Follower InFO -->
+            <!-- render all Follower InFO -->
             <app-follower></app-follower>
         </div>
     </div>
-    <!-- end  Main Section    -->
+    <!-- end  Main head Section    -->
     <app-divider></app-divider>
     <!--  start tranding section   -->
-    <app-header-section></app-header-section>
-    <app-trending-section></app-trending-section>
+    <div class="row">
+        <app-header-section></app-header-section>
+        <app-trending-section></app-trending-section>
+    </div>
+   <!--  End tranding section   -->
+
     <app-divider></app-divider>
 
-    <app-articles-section>
-    </app-articles-section>
+  <!--  start articles section   -->
+   <div class="row">
+    <app-articles-section> </app-articles-section>
+   </div>
+<!--  End articles section   -->
 
+
+  
     <app-divider></app-divider>
 
 </div>

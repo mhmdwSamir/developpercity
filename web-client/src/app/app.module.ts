@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule }    from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -78,6 +80,7 @@ console.log(localStorage.getItem("access_token"))
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    BrowserAnimationsModule,
     JwtModule.forRoot({
       config: {
        tokenGetter: tokenGetter,
@@ -86,8 +89,8 @@ console.log(localStorage.getItem("access_token"))
     }),
   ],
   providers: [
-       AlertService,
-       UserService,
+        AlertService,
+        UserService,
         AuthenticationService,
        
       //  { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorInterceptor, multi: true },
