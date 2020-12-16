@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-nav',
@@ -6,8 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-nav.component.scss']
 })
 export class UserNavComponent implements OnInit {
+userProfile 
+  constructor(private route:ActivatedRoute) {
 
-  constructor() { }
+    this.route.params.subscribe((params)=>{
+     console.log(params)
+     this.userProfile = params
+
+    })
+   }
 
   ngOnInit(): void {
   }

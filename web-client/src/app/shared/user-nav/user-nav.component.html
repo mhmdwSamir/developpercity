@@ -1,1 +1,42 @@
-<p>user-nav works!</p>
+<!-- 
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" >{{userProfile.followerName }}</a>
+ 
+    <div class="collapse navbar-collapse">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link">140K Followers </a>
+        <a class="nav-item nav-link" routerlink="/about">About</a>
+
+        <a class="btn nav-item nav-link" routerlink="">
+
+            Following
+        </a>
+       
+      </div>
+    </div>
+  </nav> -->
+
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light my-5">
+    <a class="navbar-brand"  routerLinkActive="active">{{userProfile.followerName}}</a>
+    
+    <div class="collapse navbar-collapse" >
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" >147k followers </a>
+        </li>
+       
+       
+        <li class="nav-item">
+          <a class="nav-link"  routerLinkActive="active" [routerLink]="['../',userProfile.followerName,'/about']">About</a>
+        </li>
+        <li class="nav-item">
+            <a class="btn nav-link" >Following </a>
+          </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav> 

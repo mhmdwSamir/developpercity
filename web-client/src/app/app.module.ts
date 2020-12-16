@@ -43,6 +43,7 @@ import { TrimNamePipe } from '../core/pipes/trim-name.pipe';
 import { TopicsComponent } from './components/topics/topics.component';
 import { TopicItemComponent } from './components/topic-item/topic-item.component';
 import { UserNavComponent } from './shared/user-nav/user-nav.component';
+import { UserPageComponent } from './shared/user-page/user-page.component';
 
 
 export function tokenGetter() {
@@ -86,6 +87,7 @@ if(localStorage.getItem("access_token")){
     TopicsComponent,
     TopicItemComponent,
     UserNavComponent,
+    UserPageComponent,
   ],
   imports: [
     BrowserModule,
