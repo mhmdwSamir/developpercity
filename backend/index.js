@@ -1,5 +1,5 @@
-require("./src/helpers/handleUncaughtException");
-require("./src/helpers/handleSyntaxError");
+// require("./src/helpers/handleUncaughtException");
+// require("./src/helpers/handleSyntaxError");
 require('dotenv').config({ path: "./config.env" });
 require("./src/db/db");
 const express = require("express");
@@ -54,15 +54,36 @@ app.use(hpp());
 app.use(express.json({ limit: '10kb' }));
 app.use(limiter);
 app.use(cors());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // routes  
 
 app.use("/api/auth", userRouter);
-
 app.use("/api/articles", articleRouter);
-
 app.use("/api/reviews", reviewRouter);
-
 app.use("/api/events", EventRouter);
+
+
+
+
+
+
+
+
+
 
 
 // requestTime

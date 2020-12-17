@@ -51,9 +51,18 @@ UserSchema.virtual("task", { // relation => one to many
 
 })
 
+UserSchema.virtual("article", { // relation => one to many 
+    ref: "Article",
+    localField: "_id", // one || sould be primary || table 1 => 
+    foreignField: "owner" // many || sould be forign || table 2 => task Model 
+
+})
+
 const saltRounds = 10;
 UserSchema.methods.toJson = function() {
+    console.log(this)
     let user = this;
+
 
 }
 UserSchema.methods.checkCorrectPassword = async function(candidatePass, userPass) {
@@ -133,8 +142,5 @@ UserSchema.pre('save', async function() {
     user.password = hashedPassword;
 
 });
-
-
-
 
 module.exports = mongoose.model("User", UserSchema, "User");

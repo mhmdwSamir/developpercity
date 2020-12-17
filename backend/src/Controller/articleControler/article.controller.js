@@ -6,31 +6,30 @@ module.exports = {
     // getAllArticles
     getAllArticles: async(req, res, next) => {
         try {
-
             // BUILD QUERY
             let queryObj = {...req.query };
-            let excludedFeilds = ["page", "limit", "sort"];
-            excludedFeilds.forEach(ele => {
-
-                delete queryObj[ele]
-            })
+            // let excludedFeilds = ["page", "limit", "sort"];
+            // excludedFeilds.forEach(ele => {
+            //     delete queryObj[ele]
+            // })
             console.log("queryObj", queryObj)
                 // Advanced  Filtering
 
-            let queryStr = JSON.stringify(queryObj)
-            queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g, match => `$${match}`)
+            // let queryStr = JSON.stringify(queryObj)
+            // queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g, match => `$${match}`)
 
-            console.log("| SENDEDqUERY |queryObj after stri && replace", queryStr);
+            // console.log("| SENDEDqUERY |queryObj after stri && replace", queryStr);
 
 
             // //  Sorting 
-            let query;
-            if (req.query.sort) {
-                console.log("Sor By =>", req.query.sort)
-                query = query.sort(req.query.sort)
-            }
+            // let query;
+            // if (req.query.sort) {
+            //     console.log("Sor By =>", req.query.sort)
+            //     query = query.sort(req.query.sort)
+            // }
             //  query = await query;
-            query = Article.find(JSON.parse(queryStr))
+            // query = Article.find(JSON.parse(queryStr))
+            query = Article.find()
 
 
 
@@ -47,8 +46,9 @@ module.exports = {
 
             })
         } catch (ex) {
-
+            console.log(ex)
             res.status(501).send({
+                
                 status: "fail",
                 message: ex.message
             })

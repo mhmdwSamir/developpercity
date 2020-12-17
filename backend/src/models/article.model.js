@@ -1,5 +1,6 @@
 //const { boolean } = require("joi");
 const mongoose = require("mongoose");
+const User = require("./user.model")
 const articleSchema = mongoose.Schema({
     title: {
         type: String,
@@ -17,7 +18,7 @@ const articleSchema = mongoose.Schema({
         required: true,
     },
     img: {
-        //  required:true,  Give Error !!
+      
         data: Buffer,
         contentType: String,
 
@@ -27,9 +28,19 @@ const articleSchema = mongoose.Schema({
         default: false
     },
     date: {
-        type: Date,
+        type: ISODate,
         default: Date.now()
-    }
+    },
+    article_owner:{}
+        // who is the owner?
+      
+        // {  ref: 'User' }
+    //    ref:"UserSchema" 
+    
+    //  },
+    //     toJSON: { virtuals: true },
+    //     toObject: { virtuals: true }
+  
 });
 
 
