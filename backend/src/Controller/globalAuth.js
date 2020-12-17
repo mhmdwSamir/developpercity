@@ -48,7 +48,7 @@ module.exports = {
                 throw new Exception("Please Login to get access", http_status_code.Unauthorized, "SWkl5254r")
             }
             // 2-  Verifiy token
-            let decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+            let decoded = jwt.verify(token, process.env.JWT_SECRET);
 
             if (!decoded) next(new Exception("Please Login to get access", http_status_code.Unauthorized, "SWkl5254r"))
                 // 3-  check if user still exist 

@@ -1,19 +1,21 @@
 const Article = require("../../models/article.model");
 const { Exception } = require("../../core/Exception/Exception");
-const http_status_code = require("../../helpers/http_status_code")
-
+const http_status_code = require("../../helpers/http_status_code");
+const { compareSync } = require("bcrypt");
+const Mongoose = require('mongoose');
+const User = require('../../models/user.model')
 module.exports = {
     // getAllArticles
-    getAllArticles: async(req, res, next) => {
+    getAllArticles: async (req, res, next) => {
         try {
             // BUILD QUERY
-            let queryObj = {...req.query };
+            let queryObj = { ...req.query };
             // let excludedFeilds = ["page", "limit", "sort"];
             // excludedFeilds.forEach(ele => {
             //     delete queryObj[ele]
             // })
             console.log("queryObj", queryObj)
-                // Advanced  Filtering
+            // Advanced  Filtering
 
             // let queryStr = JSON.stringify(queryObj)
             // queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g, match => `$${match}`)
@@ -48,7 +50,7 @@ module.exports = {
         } catch (ex) {
             console.log(ex)
             res.status(501).send({
-                
+
                 status: "fail",
                 message: ex.message
             })
@@ -56,27 +58,43 @@ module.exports = {
     },
 
     //getSpecificArticle
-    getSpecificArticle: async(req, res) => {
-        let id = req.params.id;
-        // if(!id) throw new Exception("!♥Dont Play PLEASE ♥! No Given Id to get the article !♥♥! " ,http_status_code.BadRequest , "UIYTjn25U");
+    getSpecificArticle: async (req, res) => {
+        try {
+            let id = req.params.id;
 
-        // Dont Work !!
-        //let coreectID = await Article.findById(id);
-        //console.log("coreectID",coreectID)
-        if (!coreectID) throw new Exception("!♥Dont Play PLEASE ♥! INNCORECT id ", http_status_code.BadRequest, "OKLEjn25U");
-        let article = await Article.findOne({ _id: req.params.id });
-        // console.log("reaer",article)
-        res.status(http_status_code.Ok).send({
-            statse: "Succesful Operation",
-            data: article,
-        })
+            console.log(" reqParams", req.params.id);
+            if (!id) throw new Exception("!♥Dont Play PLEASE ♥! No Given Id to get the article !♥♥! ", http_status_code.BadRequest, "UIYTjn25U");
+
+            // Dont Work !!
+            console.log(id)
+            // let article = await Article.findById(id);
+
+            // if (!article) throw new Exception("!♥Dont Play PLEASE ♥! INNCORECT id ", http_status_code.BadRequest, "OKLEjn25U");
+
+            let article = await Article.findById(id)
+            .populate('guides')
+            .exec();
+            console.log("after populate ", article)
+            // console.log("reaer",article)
+            res.status(http_status_code.Ok).send({
+                statse: "Succesful Operation",
+                data: article,
+            })
+
+        } catch (ex) {
+            console.log(ex)
+            res.status(404).send({
+                statse: "Failed Operation",
+                message: ex,
+            })
+        }
     },
 
     //deleteArticleById
-    deleteArticleById: async(req, res) => {
+    deleteArticleById: async (req, res) => {
         try {
             let id = req.params.id // id ,
-                // Conflict happens here || with delete all route 
+            // Conflict happens here || with delete all route 
             if (!id) throw new Exception("♥♥ No Given id to delete with ♥♥", http_status_code.BadRequest, "JkkJKG14ll")
             Article.findByIdAndDelete(id, (err, article) => {
                 if (err) throw new Exception("♥♥ Problem with Deleting the Article♥♥", http_status_code.BadRequest, "JJHJKG14ll")
@@ -94,7 +112,7 @@ module.exports = {
     },
 
     //delete All Articles
-    deleteAll: async(req, res, next) => {
+    deleteAll: async (req, res, next) => {
         try {
             const result = await Article.deleteMany();
             res.status(http_status_code.Ok).send({
@@ -108,7 +126,8 @@ module.exports = {
 
     },
     // add 
-    addArticle: async(req, res, next) => {
+    addArticle: async (req, res, next) => {
+
         // should  validate req.body  ||  Confuse Me ♥♥♥♥ 
         // const{error}  = validate(req.body);
         // console.log("error" , error)
@@ -117,19 +136,21 @@ module.exports = {
 
         let { title, catogray, writer, img } = req.body;
         //  console.log({...req.body})
-
-        let newArticle = new Article({...req.body});
+        // creatorUserId
+        let newArticle = new Article({
+            ...req.body,
+            guides: [Mongoose.Types.ObjectId(req.user.id)]
+        });
         newArticle = await newArticle.save();
 
         res.status(http_status_code.Created).send({
             status: "Success Add Article Operation ♥♥!",
             data: newArticle,
-
         })
 
     },
     //update
-    updateArticle: async(req, res, next) => {
+    updateArticle: async (req, res, next) => {
 
         // console.log("req.params._id",req.params.ID)
         let article = await Article.findOne({ _id: req.params.ID });
@@ -137,10 +158,10 @@ module.exports = {
         if (!article) throw new Exception("No Article Founde to Be updated  ", http_status_code.BadRequest, "xXeUff445")
         console.log(req.body)
         article = await Article.findByIdAndUpdate(req.params.ID, req.body, {
-                new: true,
-                runValidators: true
-            })
-            // cannot Control Error Message 😋 ☹☹ ♥♥!
+            new: true,
+            runValidators: true
+        })
+        // cannot Control Error Message 😋 ☹☹ ♥♥!
         res.status(200).send({
             status: "Success",
             data: {

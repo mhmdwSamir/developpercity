@@ -23,7 +23,7 @@ const handleAsync = require("../helpers/handle_async_Op.handler");
 router.get("", handleAsync(articleControler.getAllArticles))
 
 // route to get specfic article
-router.get("/:id", handleAsync(articleControler.getSpecificArticle))
+router.get("/specfic/:id", handleAsync(articleControler.getSpecificArticle))
 
 // route to delete delete an article  || retrict it to its user || AND ADMIN || CONTRIBUTER_LEAD 
 
@@ -36,7 +36,7 @@ router.delete("/delete", handleAsync(articleControler.deleteAll))
 
 
 // route to Add an Article || availabe to all only registered users 
-router.post("/add", handleAsync(articleControler.addArticle))
+router.post("/add", authController.protect, handleAsync(articleControler.addArticle))
 
 
 // route to update a specfic article

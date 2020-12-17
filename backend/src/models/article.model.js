@@ -29,31 +29,30 @@ const articleSchema = mongoose.Schema({
         type: Date,
         default: Date.now()
     },
-    owners:Array,
-    // guide:{
+    owners: Array,
+    //  guides : array || embeding way 
+    guides: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        }
 
-    //     // ref: 'User' 
-    // },
-        // who is the owner?
-      
-        // 
-    //    ref:"UserSchema" 
-    
-    // //  },
+    ]
+    //     {
     //     toJSON: { virtuals: true },
     //     toObject: { virtuals: true }
-  
-});
-
-articleSchema.pre('save', async function(next) {
-
-   const articlesOwnersPromises = this.owners.map(async (id)=>
-      await User.findById(id)); 
-    this.owners = await Promise.all(articlesOwnersPromises);
-   
-    next()
+    //     }
 
 });
+
+// articleSchema.pre('save', async function (next) {
+//     // a relation between user MODEL and article Model embedding way 
+//     const articlesOwnersPromises = this.owners.map(async (id) =>
+//         await User.findById(id));
+//     this.owners = await Promise.all(articlesOwnersPromises);
+//     next()
+
+// });
 
 
 module.exports = mongoose.model("Article", articleSchema, "Article");
