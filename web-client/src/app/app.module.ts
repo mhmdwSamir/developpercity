@@ -44,6 +44,8 @@ import { TopicsComponent } from './components/topics/topics.component';
 import { TopicItemComponent } from './components/topic-item/topic-item.component';
 import { UserNavComponent } from './shared/user-nav/user-nav.component';
 import { UserPageComponent } from './shared/user-page/user-page.component';
+import { DropdownComponent } from './shared/dropdown/dropdown.component';
+import { CustomDropdownComponent } from './shared/custom-dropdown/custom-dropdown.component';
 
 
 export function tokenGetter() {
@@ -88,6 +90,8 @@ if(localStorage.getItem("access_token")){
     TopicItemComponent,
     UserNavComponent,
     UserPageComponent,
+    DropdownComponent,
+    CustomDropdownComponent,
   ],
   imports: [
     BrowserModule,
