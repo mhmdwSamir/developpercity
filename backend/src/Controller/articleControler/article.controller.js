@@ -116,11 +116,13 @@ module.exports = {
         // if(error) throw new Exception(`♥♥Error: ${error.details[0]} ♥♥`,http_status_code.BadRequest,"JkkJKG14ll" );
 
         let { title, catogray, writer, img } = req.body;
-        let newArticle = new Article({ title, catogray, writer, img });
+        //  console.log({...req.body})
+
+        let newArticle = new Article({...req.body});
         newArticle = await newArticle.save();
 
         res.status(http_status_code.Created).send({
-            status: "sucees adding Operation ♥♥!",
+            status: "Success Add Article Operation ♥♥!",
             data: newArticle,
 
         })

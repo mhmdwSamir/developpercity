@@ -18,31 +18,42 @@ const articleSchema = mongoose.Schema({
         required: true,
     },
     img: {
-      
         data: Buffer,
         contentType: String,
-
     },
     isPublished: {
         type: Boolean,
         default: false
     },
     date: {
-        type: ISODate,
+        type: Date,
         default: Date.now()
     },
-    article_owner:{}
+    owners:Array,
+    // guide:{
+
+    //     // ref: 'User' 
+    // },
         // who is the owner?
       
-        // {  ref: 'User' }
+        // 
     //    ref:"UserSchema" 
     
-    //  },
+    // //  },
     //     toJSON: { virtuals: true },
     //     toObject: { virtuals: true }
   
 });
 
+articleSchema.pre('save', async function(next) {
+
+   const articlesOwnersPromises = this.owners.map(async (id)=>
+      await User.findById(id)); 
+    this.owners = await Promise.all(articlesOwnersPromises);
+   
+    next()
+
+});
 
 
 module.exports = mongoose.model("Article", articleSchema, "Article");
