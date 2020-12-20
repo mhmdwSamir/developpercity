@@ -6,15 +6,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dropdown.component.scss']
 })
 export class DropdownComponent implements OnInit {
-  dropDownInst
+  dropDownInst 
+  dropdownName = "DropDown";
+  selectedOption ="option 3"
   options= [
     // array of options 
+    "option1",
+    "option2",
+    "option3",
+    "option7",
   ]
+
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onOptionClick(){}
+  onOptionClick(val){
+
+     console.log(" from OPTIONCLICK ", val)
+  }
+  optionSelected(){}
 
 }

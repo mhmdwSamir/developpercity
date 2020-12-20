@@ -12,6 +12,8 @@ import { UserComponent } from './components/user/user.component';
 import { AboutComponent } from './nav-list-coms/about/about.component';
 // import { UserFollowerComponent } from './components/user-followers/user-followers.component';
 import { FollowerComponent } from './shared/follower/follower.component';
+import { HelpComponent } from './nav-list-coms/help/help.component';
+import { LegalComponent } from './nav-list-coms/legal/legal.component';
 
 
 
@@ -35,7 +37,16 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard] ,
     
    },
-  { path: 'about', component: AboutComponent , canActivate: [AuthGuard] },
+  { 
+    path: 'about', component: AboutComponent , canActivate: [AuthGuard] 
+  },
+  { 
+    path: 'help', component: HelpComponent , canActivate: [AuthGuard] 
+  },
+  
+  { 
+    path: 'legal', component: LegalComponent , canActivate: [AuthGuard] 
+  },
 
   { 
     path: 'admin', 

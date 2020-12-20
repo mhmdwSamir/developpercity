@@ -46,6 +46,8 @@ import { UserNavComponent } from './shared/user-nav/user-nav.component';
 import { UserPageComponent } from './shared/user-page/user-page.component';
 import { DropdownComponent } from './shared/dropdown/dropdown.component';
 import { CustomDropdownComponent } from './shared/custom-dropdown/custom-dropdown.component';
+import { HelpComponent } from './nav-list-coms/help/help.component';
+import { LegalComponent } from './nav-list-coms/legal/legal.component';
 
 
 export function tokenGetter() {
@@ -92,6 +94,8 @@ if(localStorage.getItem("access_token")){
     UserPageComponent,
     DropdownComponent,
     CustomDropdownComponent,
+    HelpComponent,
+    LegalComponent,
   ],
   imports: [
     BrowserModule,

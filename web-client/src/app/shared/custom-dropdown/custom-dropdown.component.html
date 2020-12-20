@@ -1,1 +1,47 @@
-<p>custom-dropdown works!</p>
+<div class="row" >
+    <div class="col">
+      <div ngbDropdown class="d-inline-block" id="{{dropdownName}}-container"   >
+        <!-- #dropDownInst="ngbDropdown" -->
+        <button tabindex="0" 
+                class="menu {{dropdownName}}" 
+                
+                id="{{dropdownName}}"
+
+                ngbDropdownToggle  
+
+                (keydown.Tab)="dropDownInst.close();">
+
+            <span class="selected-item" >{{selectedOption}}</span>
+
+             <!--  icon up and down  -->
+            <!-- <div [ngClass]="dropDownInst.isOpen() ? 'icon-up' : 'icon-dwn'">
+
+            </div> -->
+        </button>
+        
+        <!--dropdown options-->
+
+        <div ngbDropdownMenu 
+            id="{{dropdownName}}-menu" 
+            class="menu-container {{dropdownName}}-menu" 
+            attr.aria-labelledby="{{dropdownName}}">
+            <button class="menu-item dropdown-item {{dropdownName}}-item"
+                        id="{{dropdownName}}-item"
+                        *ngFor="let option of options" 
+                    
+             >
+                {{option}}
+
+            </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    <!-- ngbDropdownItem
+                (keydown.Tab)="dropDownInst.close();" 
+                (keydown.enter)="onOptionClick(option)"
+                (click)="onOptionClick(option)" 
+            
+            -->

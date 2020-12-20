@@ -10,10 +10,17 @@ export class CustomDropdownComponent implements OnInit {
   @Input() dropdownName;
   @Input() selectedOption;
   @Output() optionSelected = new EventEmitter<any>();
+
+
+  dropDownInst
+
+
+
   constructor() { }
+
 // Init
   ngOnInit(): void {}
-
+      
    // Viewinit
   ngAfterViewInit() { }
   // on choose specific option 

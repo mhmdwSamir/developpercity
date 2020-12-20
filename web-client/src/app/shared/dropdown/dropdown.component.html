@@ -1,58 +1,17 @@
 <div class="dropdown1">
     <div class="dropdown-label">Choose operating system</div>
-        <!-- <app-custom-dropdown 
-              [options] = "osList" 
-              [dropdownName] = "'os'"
-              [selectedOption]="selectedOS"
+      <app-custom-dropdown 
+              [options] = "" 
+              [dropdownName] = ""
+              [selectedOption]=""
               (optionSelected)="optionSelected($event)" >
-        </app-custom-dropdown> -->
+        </app-custom-dropdown> 
     </div>
 
 
 <!--  start main dropdown implementation  -->
-    <div class="row" >
-        <div class="col">
-          <div ngbDropdown class="d-inline-block" id="{{dropdownName}}-container" #dropDownInst="ngbDropdown">
-            
-             <!-- dropdown selected option -->
-            <button tabindex="0" 
-                    class="menu {{dropdownName}}" 
-                    
-                    id="{{dropdownName}}"
 
-                    ngbDropdownToggle  
-
-                    (keydown.Tab)="dropDownInst.close();">
-
-                <span class="selected-item" >{{selectedOption}}</span>
-                 <!--  icon up and down  -->
-                <div [ngClass]="dropDownInst.isOpen() ? 'icon-up' : 'icon-dwn'">
-
-                </div>
-            </button>
-            
-            <!--dropdown options-->
-            <div ngbDropdownMenu id="{{dropdownName}}-menu" 
-                                class="menu-container {{dropdownName}}-menu" 
-                                attr.aria-labelledby="{{dropdownName}}">
+   
+<!--  End main dropdown implementation  -->
 
 
-                <button class="menu-item dropdown-item {{dropdownName}}-item"
-                    id="{{dropdownName}}-item"
-                    *ngFor="let option of options" 
-                    ngbDropdownItem
-                    (keydown.Tab)="dropDownInst.close();" 
-                    (keydown.enter)="onOptionClick(option)"
-                    (click)="onOptionClick(option)">
-
-                      {{option.name}}
-
-                </button>
-            </div>
-
-
-          </div>
-        </div>
-      </div>
-
-      <!--  start main dropdown implementation  -->
