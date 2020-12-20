@@ -4,7 +4,9 @@
     <div class="row  my-5 ">
         <!-- footer item  -->
         <!-- will be repeated for different footer items  -->
-        <app-footer-item></app-footer-item>
+        <div class="col-md-4" *ngFor=" let item of footer_items_data ">
+            <app-footer-item [item]="item"></app-footer-item>
+        </div>
 
     </div>
 
