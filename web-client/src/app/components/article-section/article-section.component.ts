@@ -8,10 +8,17 @@ import { ArticlesService } from 'src/app/services/articles/articles.service';
 })
 export class ArticleSectionComponent implements OnInit {
 
+  articles:any
   constructor(private _aService : ArticlesService) { }
 
   ngOnInit(): void {
-    this._aService.getArticles()
+    this.getAllArticlesData()
   }
 
+     getAllArticlesData(){
+      this._aService.getArticles().subscribe((res)=>{
+        console.log(res)
+        this.articles = res
+      })
+     }
 }

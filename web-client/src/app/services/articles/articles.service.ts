@@ -10,11 +10,7 @@ export class ArticlesService {
   constructor(private _http:HttpClient) { }
 
   getArticles(){
-    // 
-    return this._http.get(this.articlesRootUrl).subscribe((res)=>{
-
-      console.log(res)
-    })
+    return this._http.get(this.articlesRootUrl);
 
   }
 }
