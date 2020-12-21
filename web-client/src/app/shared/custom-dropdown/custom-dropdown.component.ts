@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-custom-dropdown',
@@ -6,27 +6,43 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./custom-dropdown.component.scss']
 })
 export class CustomDropdownComponent implements OnInit {
-  @Input() options;
-  @Input() dropdownName;
-  @Input() selectedOption;
-  @Output() optionSelected = new EventEmitter<any>();
 
 
-  dropDownInst
 
+checkState:boolean= false
+drop_user_setting = [
+  {
+    id:"dismiss",
+  title :"Dismiss Story",
+
+
+  },
+  {
+    id:"mute",
+  title :"Mute Story",
+  },
+  {
+    id:"report",
+  title :"Report User"
+  },
+  {
+    id:"block",
+  title :"Block User"
+  }
+]
 
 
   constructor() { }
-
-// Init
   ngOnInit(): void {}
-      
-   // Viewinit
-  ngAfterViewInit() { }
-  // on choose specific option 
-  onOptionClick(option) {
-    this.optionSelected.emit({ option });
+
+  iconClicked(){
+    this.checkState = !this.checkState
+    
   }
-  // ability to search for ty
-  searchForKey(key) { }
+
+  clickSetting(setting){
+    console.log(setting)
+    console.log("set clicked under control ")
+  }
+
 }

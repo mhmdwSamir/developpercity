@@ -17,7 +17,7 @@ articles:Article[]
 
  getArticles(){
    this._aService.getArticles().subscribe((data)=>{
-    console.log(data.data)
+    
    
     this.articles = data.data
   })
@@ -26,6 +26,11 @@ articles:Article[]
 
 
 
+
+
+
+
+ 
 
 
 

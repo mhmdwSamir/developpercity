@@ -1,47 +1,23 @@
-<div class="row" >
-    <div class="col">
-      <div ngbDropdown class="d-inline-block" id="{{dropdownName}}-container"   >
-        <!-- #dropDownInst="ngbDropdown" -->
-        <button tabindex="0" 
-                class="menu {{dropdownName}}" 
-                
-                id="{{dropdownName}}"
-
-                ngbDropdownToggle  
-
-                (keydown.Tab)="dropDownInst.close();">
-
-            <span class="selected-item" >{{selectedOption}}</span>
-
-             <!--  icon up and down  -->
-            <!-- <div [ngClass]="dropDownInst.isOpen() ? 'icon-up' : 'icon-dwn'">
-
-            </div> -->
-        </button>
+<div>
+  <span 
+  (click)='iconClicked()'
+  class="text-center"
+  id="dropdown1" ngbDropdownToggle> 
+      <i class="fa fa-ellipsis-v"></i>
+  </span>
+  <div *ngIf="checkState" class="mt-3" >
+      <div 
+      class="d-flex flex-column"
+      ngbDropdownMenu 
+      placement="bottom"
+      aria-labelledby="dropdown1">
+        <span 
+        class="btn_setting p-2 small"
+        *ngFor="let setting of drop_user_setting"
+        (click)="clickSetting(setting)"
+         ngbDropdownItem>{{setting.title }}</span>
         
-        <!--dropdown options-->
-
-        <div ngbDropdownMenu 
-            id="{{dropdownName}}-menu" 
-            class="menu-container {{dropdownName}}-menu" 
-            attr.aria-labelledby="{{dropdownName}}">
-            <button class="menu-item dropdown-item {{dropdownName}}-item"
-                        id="{{dropdownName}}-item"
-                        *ngFor="let option of options" 
-                    
-             >
-                {{option}}
-
-            </button>
-        </div>
       </div>
-    </div>
   </div>
 
-
-    <!-- ngbDropdownItem
-                (keydown.Tab)="dropDownInst.close();" 
-                (keydown.enter)="onOptionClick(option)"
-                (click)="onOptionClick(option)" 
-            
-            -->
+</div>
