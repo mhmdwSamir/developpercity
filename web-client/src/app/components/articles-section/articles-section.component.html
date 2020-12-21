@@ -1,8 +1,11 @@
 <div class="row">
-    <div class="col-md-8">
-        <app-article-section></app-article-section>
-        <app-article-section></app-article-section>
-        <app-article-section></app-article-section>
+    <div class="col-md-8"  >
+        <app-article-section
+        *ngFor = "let article of articles"
+         [article] = "article"
+         ></app-article-section>
+        <!-- <app-article-section></app-article-section>
+        <app-article-section></app-article-section> -->
     </div>
     <div class="col-md-4">
         <app-nav-list></app-nav-list>
