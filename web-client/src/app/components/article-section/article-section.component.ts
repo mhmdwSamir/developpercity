@@ -15,6 +15,9 @@ export class ArticleSectionComponent implements OnInit {
   ngOnInit(): void {
  
   }
+  getShortName(fullName) { 
+    return fullName.split(' ').map(n => n[0]).join('');
+  }
 
 
 }
