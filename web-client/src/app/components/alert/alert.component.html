@@ -6,8 +6,10 @@
 </div> -->
 
 
-<div *ngIf="message" [ngClass]="{ 'alert': message, 'alert-success': message.type === 'success', 'alert-danger': message.type === 'error' }">
+<div class="alert-style text-center" 
+*ngIf="message"
+ [ngClass]="{ 'alert': message, 'alert-success': message.type === 'success', 'alert-danger': message.type === 'error' }">
 
-    {{message.text | json }}
+    {{message.text.error.message | json }}
 
 </div>

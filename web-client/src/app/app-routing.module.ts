@@ -20,7 +20,8 @@ import { LegalComponent } from './nav-list-coms/legal/legal.component';
 
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent  , canActivate: [AuthGuard] },
+  // { path: '', component: HomeComponent  , canActivate: [AuthGuard] },
+  { path: '', component: HomeComponent  },
   { path: 'home',   redirectTo: '', pathMatch: 'full' }, 
   { path: 'plan', component: PlanComponent },
   { path: 'login', component: LogInComponent },
@@ -43,7 +44,6 @@ const appRoutes: Routes = [
   { 
     path: 'help', component: HelpComponent , canActivate: [AuthGuard] 
   },
-  
   { 
     path: 'legal', component: LegalComponent , canActivate: [AuthGuard] 
   },

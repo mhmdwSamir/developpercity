@@ -48,6 +48,7 @@ import { DropdownComponent } from './shared/dropdown/dropdown.component';
 import { CustomDropdownComponent } from './shared/custom-dropdown/custom-dropdown.component';
 import { HelpComponent } from './nav-list-coms/help/help.component';
 import { LegalComponent } from './nav-list-coms/legal/legal.component';
+import { TrendingModule } from './Modules/trending/trending.module';
 
 
 export function tokenGetter() {
@@ -110,6 +111,7 @@ if(localStorage.getItem("access_token")){
       //allowedDomains: ["localhost:3001", "foo.com", "bar.com"]
       },
     }),
+    TrendingModule
   ],
   providers: [
         AlertService,
