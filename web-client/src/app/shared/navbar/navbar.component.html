@@ -52,7 +52,8 @@
                      (click)="onUserAbilitySelect(userAbility,i)"
                      routerLink="/user/{{userAbility}}"
                     >
-                    {{userAbility | titlecase }}
+                    {{userAbility[i]}}
+                   
                     </a>
                     
                     </mat-menu> 

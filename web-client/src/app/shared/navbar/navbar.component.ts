@@ -3,6 +3,20 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/Models';
 import { AuthenticationService } from 'src/app/services';
 
+enum UserAbilityEnum {
+  writeStory = 1,
+  Stories = 2,
+  Stats = 3,
+  DesignYourProfile = 4,
+  Settings = 5,
+  ReadingList = 6,
+  publications = 7,
+  ControlYourRecommedations = 8,
+  DEVCITYpartnerprogram = 9,
+  BecomeAPartner = 10,
+  help = 11,
+  SignOut = 12
+}
 
 @Component({
   selector: 'app-navbar',
@@ -10,47 +24,55 @@ import { AuthenticationService } from 'src/app/services';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
- currentUser : User;
- checkState:boolean = false
- userAbilities = [
-  'write story',
-  'Stories',
-  'Stats',
-  'Design Your Profile',
-  'Settings',
-  'Reading List',
-  'publications',
-  'Control Your Recommedations',
-  'DEVCITY partner program',
-  'Become a Partner',
-  'help',
-  'Sign out',
-];
+  currentUser: User;
+  checkState: boolean = false
+  userAbilities = [
+    UserAbilityEnum.writeStory,
+    UserAbilityEnum.DesignYourProfile,
+    UserAbilityEnum.Settings,
+    UserAbilityEnum.ReadingList,
+    UserAbilityEnum.publications,
+    UserAbilityEnum.ControlYourRecommedations,
+    UserAbilityEnum.DEVCITYpartnerprogram,
+    UserAbilityEnum.BecomeAPartner,
+    UserAbilityEnum.BecomeAPartner,
+    UserAbilityEnum.help,
+    UserAbilityEnum.SignOut,
+
+  ];
 
 
-  constructor(private router:Router ,
-  private _authenticationService :AuthenticationService) {
-    this._authenticationService.currentUser.subscribe((x)=>{
-       // catch current  User
-       //console.log(x);
-       this.currentUser = x
+  constructor(private router: Router,
+    private _authenticationService: AuthenticationService) {
+    this._authenticationService.currentUser.subscribe((x) => {
+      // catch current  User
+      //console.log(x);
+      this.currentUser = x
     })
   }
 
   ngOnInit(): void {
   }
- 
-  logout(){
-     this._authenticationService.logout();
-     this.router.navigate(['/login']);
+
+  logout() {
+    this._authenticationService.logout();
+    this.router.navigate(['/login']);
   }
 
-  getUser(){
+  getUser() {
     console.log(" i was clicked and i will handle all this things ")
   }
-  onUserAbilitySelect(val:string , idx:number){
-    console.log('abilitySelected' , val)
-    console.log('index of it ',idx)
-  
+
+
+  onUserAbilitySelect(val: UserAbilityEnum, idx: number) {
+    console.log('abilitySelected : UserAbilityEnum', val);
+   
+
+    switch (val) {
+      case UserAbilityEnum.writeStory: {
+            this.router.navigate(['/addStory'])
+        break;
+      }
+    }
   }
 }

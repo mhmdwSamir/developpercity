@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { map, pluck } from 'rxjs/operators';
 import { Article } from 'src/app/Models/article.model.model';
 import { ArticlesService } from 'src/app/services';
 
@@ -8,35 +9,22 @@ import { ArticlesService } from 'src/app/services';
   styleUrls: ['./articles-section.component.scss']
 })
 export class ArticlesSectionComponent implements OnInit {
-articles:Article[]
-  constructor(private _aService:ArticlesService) { }
+  articles: Article[]
+  constructor(private _aService: ArticlesService) { }
 
   ngOnInit(): void {
     this.getArticles()
   }
 
- getArticles(){
-   this._aService.getArticles().subscribe((data:any)=>{
-     this.articles = data.data
-   })
+  getArticles() {
+    this._aService.getArticles()
+    .pipe(pluck('data'))
+    .subscribe((data) => {
+      console.log(data)
+      this.articles = data;
+    });
 
- }
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
+  }
 
 
 }
