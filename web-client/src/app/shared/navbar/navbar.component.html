@@ -7,8 +7,6 @@
             <ul class="navbar-nav ml-auto d-flex align-items-center">
                 <li class="nav-item ">
                     <a class="nav-link text-uppercase" routerLink="/home" [routerLinkActive]="['is-active']" > Home </a>
-                    <!-- <a class="nav-link" routerLink="/home" appTrim #myDirective=azab>  Home  </a> -->
-                    <!-- <button type="button" (click)="myDirective.logMe();">fire me</button> -->
                 </li>
                 <li class="nav-item mr-2">
                     <a class="nav-link" routerLink="/register">
@@ -35,7 +33,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " 
-                    routerLink="user"
+                    
                     (click)="getUser()"
                     >
                     <img 
@@ -43,39 +41,25 @@
                      src="../../../assets/images/users/user_1.png" class="userImg" />
 
                     </a>
+                    <mat-menu 
+                    #menu="matMenu" 
+                    [overlapTrigger]="false"
+                    xPosition ="after"
+                    >  
+                    <a
+                     mat-menu-item
+                     *ngFor="let userAbility of userAbilities , let i= index"
+                     (click)="onUserAbilitySelect(userAbility,i)"
+                     routerLink="/user/{{userAbility}}"
+                    >
+                    {{userAbility | titlecase }}
+                    </a>
+                    
+                    </mat-menu> 
                 </li>
-           
-
-                <!-- <button mat-button [matMenuTriggerFor]="menu">UserAvatar</button>  -->
-                <mat-menu 
-                #menu="matMenu" 
-                [overlapTrigger]="false"
-                xPosition ="after"
-                >  
-                <a
-                 mat-menu-item
-                 *ngFor="let userAbility of userAbilities , let i= index"
-                 (click)="onUserAbilitySelect(userAbility,i)"
-                 routerLink="/user/{{userAbility}}"
-                >
-                {{userAbility | titlecase }}
-                </a>
-                
-                </mat-menu> 
-
-
-
-
-
-
-
-
-
-
-
-
-
-                <li class="nav-item">
+          
+             
+               <li class="nav-item">
                     <a class="nav-link" routerLink="/admin">
                         <i class="fas fa-cogs fa-1x"></i>
                     </a>

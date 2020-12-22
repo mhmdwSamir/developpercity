@@ -12,6 +12,6 @@ export class ArticlesService {
   constructor(private _http:HttpClient) { }
 
   getArticles() {
-   return  this._http.get<Article[]>(this.articlesRootUrl)
+   return  this._http.get<any>(this.articlesRootUrl)
   }
 }

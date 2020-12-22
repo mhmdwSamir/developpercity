@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 import { ReactiveFormsModule }    from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -105,7 +105,7 @@ if(localStorage.getItem("access_token")){
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule,
+  
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
@@ -115,10 +115,7 @@ if(localStorage.getItem("access_token")){
        tokenGetter: tokenGetter,
       //allowedDomains: ["localhost:3001", "foo.com", "bar.com"]
       },
-    
-
     }),
-  
     TrendingModule,
     MatButtonModule,
     MatMenuModule
@@ -127,24 +124,10 @@ if(localStorage.getItem("access_token")){
         AlertService,
         UserService,
         AuthenticationService,
-       
       //  { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorInterceptor, multi: true },
       //  { provide: HTTP_INTERCEPTORS,useClass: JwtInterceptor, multi: true },
-  
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-
-
-
-
-
-
-
-
-
-
-
 
