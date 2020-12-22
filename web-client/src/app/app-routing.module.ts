@@ -14,6 +14,10 @@ import { AboutComponent } from './nav-list-coms/about/about.component';
 import { FollowerComponent } from './shared/follower/follower.component';
 import { HelpComponent } from './nav-list-coms/help/help.component';
 import { LegalComponent } from './nav-list-coms/legal/legal.component';
+import { AddStoryComponent } from './components/userAbilites/add-story/add-story.component';
+import { DesignProfileComponent } from './components/userAbilites/design-profile/design-profile.component';
+import { StoriesComponent } from './components/userAbilites/stories/stories.component';
+import { StatsComponent } from './components/userAbilites/stats/stats.component';
 
 
 
@@ -47,7 +51,19 @@ const appRoutes: Routes = [
   { 
     path: 'legal', component: LegalComponent , canActivate: [AuthGuard] 
   },
-
+  { 
+    path: 'addStory', component: AddStoryComponent
+  },
+  { 
+    path: 'stats', component: StatsComponent 
+  },
+  { 
+    path: 'stories', component: StoriesComponent 
+  }
+  ,
+  { 
+    path: 'design', component: DesignProfileComponent 
+  },
   { 
     path: 'admin', 
     component: AdminComponent, 

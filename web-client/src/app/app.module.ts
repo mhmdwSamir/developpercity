@@ -54,6 +54,10 @@ import { UserDropDownComponent } from './shared/user-drop-down/user-drop-down.co
 
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
+import { AddStoryComponent } from './components/userAbilites/add-story/add-story.component';
+import { StatsComponent } from './components/userAbilites/stats/stats.component';
+import { DesignProfileComponent } from './components/userAbilites/design-profile/design-profile.component';
+import { StoriesComponent } from './components/userAbilites/stories/stories.component';
 export function tokenGetter() {
 // console.log(localStorage.getItem("access_token"))
 if(localStorage.getItem("access_token")){
@@ -101,6 +105,10 @@ if(localStorage.getItem("access_token")){
     HelpComponent,
     LegalComponent,
     UserDropDownComponent,
+    AddStoryComponent,
+    StatsComponent,
+    DesignProfileComponent,
+    StoriesComponent,
   ],
   imports: [
     BrowserModule,

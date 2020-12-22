@@ -26,8 +26,11 @@ enum UserAbilityEnum {
 export class NavbarComponent implements OnInit {
   currentUser: User;
   checkState: boolean = false
+
   userAbilities = [
     UserAbilityEnum.writeStory,
+    UserAbilityEnum.Stories,
+    UserAbilityEnum.Stats,
     UserAbilityEnum.DesignYourProfile,
     UserAbilityEnum.Settings,
     UserAbilityEnum.ReadingList,
@@ -35,12 +38,11 @@ export class NavbarComponent implements OnInit {
     UserAbilityEnum.ControlYourRecommedations,
     UserAbilityEnum.DEVCITYpartnerprogram,
     UserAbilityEnum.BecomeAPartner,
-    UserAbilityEnum.BecomeAPartner,
     UserAbilityEnum.help,
     UserAbilityEnum.SignOut,
-
+  
+  
   ];
-
 
   constructor(private router: Router,
     private _authenticationService: AuthenticationService) {
@@ -73,6 +75,21 @@ export class NavbarComponent implements OnInit {
             this.router.navigate(['/addStory'])
         break;
       }
+
+      case UserAbilityEnum.Stories: {
+        this.router.navigate(['/stories'])
+    break;
+    }
+    case UserAbilityEnum.Stats: {
+      this.router.navigate(['/stats'])
+    break;
+    }
+    case UserAbilityEnum.DesignYourProfile: {
+      this.router.navigate(['/design'])
+    break;
+}
+
+      
     }
   }
 }
