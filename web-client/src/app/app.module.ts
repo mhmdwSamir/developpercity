@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { ReactiveFormsModule }    from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -14,7 +14,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HomeComponent } from './components/home/home.component';
 import { FormsModule } from '@angular/forms';
 import { AlertComponent } from './components/alert/alert.component';
-import  {ErrorInterceptorInterceptor} from "./helpers/error-interceptor.interceptor";
+import { ErrorInterceptorInterceptor } from "./helpers/error-interceptor.interceptor";
 import { JwtModule } from "@auth0/angular-jwt";
 import { InputComponent } from './shared/input/input.component';
 import { FooterComponent } from './shared/footer/footer.component'
@@ -36,9 +36,9 @@ import { TrendingSectionComponent } from './shared/trending-section/trending-sec
 import { FooterItemComponent } from './shared/footer-item/footer-item.component';
 import { NavListComponent } from './components/nav-list/nav-list.component';
 import { ArticlesSectionComponent } from './components/articles-section/articles-section.component';
+
 import { ArticleSectionComponent } from './components/article-section/article-section.component';
 import { AboutComponent } from './nav-list-coms/about/about.component';
-
 import { UserFollowerComponent } from './components/user-followers/user-followers.component';
 import { TrimNamePipe } from '../core/pipes/trim-name.pipe';
 import { TopicsComponent } from './components/topics/topics.component';
@@ -51,18 +51,19 @@ import { HelpComponent } from './nav-list-coms/help/help.component';
 import { LegalComponent } from './nav-list-coms/legal/legal.component';
 import { TrendingModule } from './Modules/trending/trending.module';
 import { UserDropDownComponent } from './shared/user-drop-down/user-drop-down.component';
-
-import {MatMenuModule} from '@angular/material/menu';
-import {MatButtonModule} from '@angular/material/button';
 import { AddStoryComponent } from './components/userAbilites/add-story/add-story.component';
 import { StatsComponent } from './components/userAbilites/stats/stats.component';
 import { DesignProfileComponent } from './components/userAbilites/design-profile/design-profile.component';
 import { StoriesComponent } from './components/userAbilites/stories/stories.component';
+
+
+import { MaterialModule } from './material-deisgn/material.module';
+
 export function tokenGetter() {
-// console.log(localStorage.getItem("access_token"))
-if(localStorage.getItem("access_token")){
-   console.log(localStorage.getItem("access_token"))
-}
+  // console.log(localStorage.getItem("access_token"))
+  if (localStorage.getItem("access_token")) {
+    console.log(localStorage.getItem("access_token"))
+  }
   return localStorage.getItem("access_token");
 }
 
@@ -113,27 +114,26 @@ if(localStorage.getItem("access_token")){
   imports: [
     BrowserModule,
     AppRoutingModule,
-  
+
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
     JwtModule.forRoot({
       config: {
-       tokenGetter: tokenGetter,
-      //allowedDomains: ["localhost:3001", "foo.com", "bar.com"]
+        tokenGetter: tokenGetter,
+        //allowedDomains: ["localhost:3001", "foo.com", "bar.com"]
       },
     }),
     TrendingModule,
-    MatButtonModule,
-    MatMenuModule
+    MaterialModule
   ],
   providers: [
-        AlertService,
-        UserService,
-        AuthenticationService,
-      //  { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorInterceptor, multi: true },
-      //  { provide: HTTP_INTERCEPTORS,useClass: JwtInterceptor, multi: true },
+    AlertService,
+    UserService,
+    AuthenticationService,
+    //  { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorInterceptor, multi: true },
+    //  { provide: HTTP_INTERCEPTORS,useClass: JwtInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

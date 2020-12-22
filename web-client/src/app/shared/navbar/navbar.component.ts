@@ -28,20 +28,18 @@ export class NavbarComponent implements OnInit {
   checkState: boolean = false
 
   userAbilities = [
-    UserAbilityEnum.writeStory,
-    UserAbilityEnum.Stories,
-    UserAbilityEnum.Stats,
-    UserAbilityEnum.DesignYourProfile,
-    UserAbilityEnum.Settings,
-    UserAbilityEnum.ReadingList,
-    UserAbilityEnum.publications,
-    UserAbilityEnum.ControlYourRecommedations,
-    UserAbilityEnum.DEVCITYpartnerprogram,
-    UserAbilityEnum.BecomeAPartner,
-    UserAbilityEnum.help,
-    UserAbilityEnum.SignOut,
-  
-  
+    { name: 'Write story', id: UserAbilityEnum.writeStory},
+    { name: 'Stories', id: UserAbilityEnum.Stories},
+    { name: 'Stats', id: UserAbilityEnum.Stats},
+    { name: 'Design Your Profile', id: UserAbilityEnum.DesignYourProfile},
+    { name: 'Settings', id: UserAbilityEnum.Settings},
+    { name: 'Reading List', id: UserAbilityEnum.ReadingList},
+    { name: 'publications', id: UserAbilityEnum.publications},
+    { name: 'Control Your Recommedations', id: UserAbilityEnum.ControlYourRecommedations },
+    { name: 'DEVCITY partnerprogram', id: UserAbilityEnum.DEVCITYpartnerprogram },
+    { name: 'Become A Partner', id: UserAbilityEnum.BecomeAPartner },
+    { name: 'help', id: UserAbilityEnum.help },
+    { name: 'SignOut', id: UserAbilityEnum.SignOut }
   ];
 
   constructor(private router: Router,
@@ -68,28 +66,27 @@ export class NavbarComponent implements OnInit {
 
   onUserAbilitySelect(val: UserAbilityEnum, idx: number) {
     console.log('abilitySelected : UserAbilityEnum', val);
-   
+
 
     switch (val) {
       case UserAbilityEnum.writeStory: {
-            this.router.navigate(['/addStory'])
+        this.router.navigate(['/addStory'])
+        break;
+      }
+      case UserAbilityEnum.Stories: {
+        this.router.navigate(['/stories'])
+        break;
+      }
+      case UserAbilityEnum.Stats: {
+        this.router.navigate(['/stats'])
+        break;
+      }
+      case UserAbilityEnum.DesignYourProfile: {
+        this.router.navigate(['/design'])
         break;
       }
 
-      case UserAbilityEnum.Stories: {
-        this.router.navigate(['/stories'])
-    break;
-    }
-    case UserAbilityEnum.Stats: {
-      this.router.navigate(['/stats'])
-    break;
-    }
-    case UserAbilityEnum.DesignYourProfile: {
-      this.router.navigate(['/design'])
-    break;
-}
 
-      
     }
   }
 }
