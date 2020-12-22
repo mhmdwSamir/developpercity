@@ -2,6 +2,7 @@
 
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 //  Global  
 * {
     font-family: monaco;
@@ -60,4 +61,16 @@ i {
     text-align: center;
     line-height: 70px;
     border-radius: 50%;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+
+hr {
+    margin-top: 0; 
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid black
 }

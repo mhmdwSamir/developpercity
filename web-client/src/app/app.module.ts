@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule }    from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -49,8 +50,10 @@ import { CustomDropdownComponent } from './shared/custom-dropdown/custom-dropdow
 import { HelpComponent } from './nav-list-coms/help/help.component';
 import { LegalComponent } from './nav-list-coms/legal/legal.component';
 import { TrendingModule } from './Modules/trending/trending.module';
+import { UserDropDownComponent } from './shared/user-drop-down/user-drop-down.component';
 
-
+import {MatMenuModule} from '@angular/material/menu';
+import {MatButtonModule} from '@angular/material/button';
 export function tokenGetter() {
 // console.log(localStorage.getItem("access_token"))
 if(localStorage.getItem("access_token")){
@@ -97,10 +100,12 @@ if(localStorage.getItem("access_token")){
     CustomDropdownComponent,
     HelpComponent,
     LegalComponent,
+    UserDropDownComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    NgbModule,
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
@@ -110,8 +115,13 @@ if(localStorage.getItem("access_token")){
        tokenGetter: tokenGetter,
       //allowedDomains: ["localhost:3001", "foo.com", "bar.com"]
       },
+    
+
     }),
-    TrendingModule
+  
+    TrendingModule,
+    MatButtonModule,
+    MatMenuModule
   ],
   providers: [
         AlertService,

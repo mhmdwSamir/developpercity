@@ -1,7 +1,9 @@
 <ul class="nav" [class.fixed]="nav_fixed">
     <!-- alterNative way  -->
-    <li class="nav-item" *ngFor="let nav_item of navItems">
-        <a class="nav-link text-uppercase " [routerLink]="['/',nav_item]"> {{nav_item}}</a>
+    <li class="nav-item " *ngFor="let nav_item of navItems">
+        <a 
+        class="nav-link text-uppercase text-muted" 
+        [routerLink]="['/',nav_item]"> {{nav_item}}</a>
     </li>
 
 </ul>

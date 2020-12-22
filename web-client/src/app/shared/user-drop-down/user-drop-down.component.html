@@ -1,0 +1,18 @@
+
+<button mat-button [matMenuTriggerFor]="menu">UserAvatar</button> 
+<mat-menu 
+#menu="matMenu" 
+[overlapTrigger]="false"
+xPosition ="after"
+>  
+<a
+ mat-menu-item
+ *ngFor="let userAbility of userAbilities , let i= index"
+ (click)="onUserAbilitySelect(userAbility,i)"
+ routerLink="/{{userAbility}}"
+>
+
+{{userAbility | titlecase }}
+</a>
+
+</mat-menu> 

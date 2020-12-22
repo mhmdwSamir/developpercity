@@ -10,7 +10,24 @@ import { AuthenticationService } from 'src/app/services';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
- currentUser : User
+ currentUser : User;
+ checkState:boolean = false
+ userAbilities = [
+  'write story',
+  'Stories',
+  'Stats',
+  'Design Your Profile',
+  'Settings',
+  'Reading List',
+  'publications',
+  'Control Your Recommedations',
+  'DEVCITY partner program',
+  'Become a Partner',
+  'help',
+  'Sign out',
+];
+
+
   constructor(private router:Router ,
   private _authenticationService :AuthenticationService) {
     this._authenticationService.currentUser.subscribe((x)=>{
@@ -26,5 +43,14 @@ export class NavbarComponent implements OnInit {
   logout(){
      this._authenticationService.logout();
      this.router.navigate(['/login']);
+  }
+
+  getUser(){
+    console.log(" i was clicked and i will handle all this things ")
+  }
+  onUserAbilitySelect(val:string , idx:number){
+    console.log('abilitySelected' , val)
+    console.log('index of it ',idx)
+  
   }
 }
