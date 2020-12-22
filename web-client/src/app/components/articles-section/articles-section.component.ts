@@ -16,11 +16,9 @@ articles:Article[]
   }
 
  getArticles(){
-   this._aService.getArticles().subscribe((data)=>{
-    
-   
-    this.articles = data.data
-  })
+   this._aService.getArticles().subscribe((data:any)=>{
+     this.articles = data.data
+   })
 
  }
 
