@@ -3,7 +3,7 @@
          <div class="col-12">
 
             <form >
-<!--  title of story   -->
+              <!-- start  title of story   -->
                 <mat-form-field [formGroup]="formAddArticle" class="c-input">
                   <mat-label>Title</mat-label>
                   <input 
@@ -13,41 +13,93 @@
                   placeholder="Ex. How To Write Clean Code " 
                   class="text-muted" >
                 </mat-form-field>
+            <!-- end  title of story   -->
+            <!-- Start icon +  -->
                 <div>
                     <i (click)="changeShowState()" class="fa fa-plus-circle fa-2x mb-2" ></i>
 
 
-                    <!-- Icon image upload   -->
+                    
                     <div *ngIf="showIconState">
-                        <input style="display:none" name="Select File" type="file" id="img" />
+                        <!-- Icon image upload   -->
+                        <div class="imgUpload">
+                        <input style="display:none"  type="file" id="img" />
                         <label for="img">
                             <i class="fa fa-camera mx-2"></i>
                         </label>
+                        </div>
+                        <!-- Icon Search  -->
+                        <div  class="search">
+                                <mat-form-field class="search c-input" *ngIf="searchState" >    
+                                    <input matInput placeholder="Type keywords to search Unsplash, and press Enter">
+                                </mat-form-field>
+                                <label for="searchUnSplach">
+                                    <i 
+                                    class="fa fa-search mx-2 "
+                                    (click)="showInputSearch()"
+                                    *ngIf="IconSearchStat"
+                                    ></i>
+                                </label>
+                        </div>
+                        <!-- Icon play  -->   
 
-                        <!-- <div >
-                            <input  matInput    id="searchUnSplach" />
-                        </div> -->
-
-<!-- Icon Search  -->
-                   <div  class="search">
-                        <mat-form-field class="search" *ngIf="searchState" >    
-                            <input matInput>
-                        </mat-form-field>
-                        <label for="searchUnSplach">
-                            <i 
-                              class="fa fa-search mx-2 "
-                              (click)="showInputSearch()"
-                              *ngIf="IconSearchStat"
-                              ></i>
-                        </label>
-                   </div>
+                        <div class="play">
+                          <form [formGroup]="playGroup">
+                            <mat-form-field class="play c-input" *ngIf="playStateFeild" >    
+                                <input 
+                                  matInput 
+                                  (keyup.enter)="onKeyEnter($event)"
+                                  formControlName="play"
+                                  class="w-100"
+                                  placeholder="Paste a YouTube, Vine, Vimeo, or other video link, and press Enter">
+                            </mat-form-field>
+                          </form>
+                           
+                            <label 
+                            for="videoLink"
+                            (click)="showInputvideoLink()"
+                            >
+                                <i class="fa fa-play mr-2" *ngIf="playStateIcon" (click)="playClicked()"></i>
+                            </label>
+                        </div>
+                        <!-- Icon code  -->   
+                        <div class="code my-5">
+                            <i class="fa fa-code"></i>
+                        </div>      
                         
-
-                        <i class="fa fa-play mr-2"></i>
-                        <i class="fa fa-code"></i>
                     </div>
+               
+                   <!-- <iframe 
 
+                   *ngIf="isPassedUrl" width="560"
+                    height="315" 
+                   [src]="https://www.youtube.com/embed/+{{videoId|safe}}+" 
+                   [src]=`www.youtube.com/embed/+{{videoId|safe}}+`
+                   
+                   frameborder="0" 
+                   allowfullscreen
+ 
+                   ></iframe> -->
+
+
+                   <iframe 
+                   *ngIf="isPassedUrl"
+                   width="560" 
+                   height="315" 
+                   src="//www.youtube.com/embed/'+ {{videoId|safe}} + '" 
+                  frameborder="0"
+                   allowfullscreen
+                   ></iframe>
+
+      
+
+                    <!-- <iframe *ngIf="isPassedUrl" height="560" width="500"  
+                    src="https://www.youtube.com/embed/8EhFDJ0SGSA"> 
+                    </iframe>  -->
                 </div>
+
+
+                 <!-- end icon +  -->
               <!-- Story Body    -->
                 <mat-form-field  appearance="fill"  class="c-input" >
                   <mat-label>Write Astory </mat-label>
@@ -70,9 +122,17 @@
 
 
  <div class="text-muted">
-     <p> this div for testing only  </p>
+     <p> this div for testing form feilds   </p>
      <p>
-      form feilds Values {{ formAddArticle.value | json}}
+      form feilds Values {{ formAddArticle.value}}
      </p>
  </div>
-   
+ <div class="text-muted">
+    <p> this div for testing playGroup  </p>
+    <p>
+     form feilds Values {{ playGroup.value }}
+    </p>
+</div>
+ 
+
+{{videoId}}

@@ -58,6 +58,7 @@ import { StoriesComponent } from './components/userAbilites/stories/stories.comp
 
 // import 
 import { MaterialModule } from './material-deisgn/material.module';
+import { SafePipe } from './pipes/safe.pipe';
 
 export function tokenGetter() {
   // console.log(localStorage.getItem("access_token"))
@@ -110,6 +111,7 @@ export function tokenGetter() {
     StatsComponent,
     DesignProfileComponent,
     StoriesComponent,
+    SafePipe,
   ],
   imports: [
     BrowserModule,
