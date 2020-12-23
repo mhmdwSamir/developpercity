@@ -1,16 +1,84 @@
 
-<p>
-    <mat-toolbar color="primary">
-      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <span>My App</span>
-      <span class="example-spacer"></span>
-      <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-        <mat-icon>favorite</mat-icon>
-      </button>
-      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-        <mat-icon>share</mat-icon>
-      </button>
-    </mat-toolbar>
-  </p>
+ <!-- start navbar  of page USER PROFILE-->
+    <p>
+      <mat-toolbar  class="justify-content-between">
+       <div>
+        <i class="fas fa-angle-left mr-4"></i>
+        <span class="userImg mr-2">A V</span>
+        <span>| Design</span>
+        
+       </div>
+        
+        <span class="example-spacer"></span>
+        <div>
+          <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+            <mat-icon>favorite</mat-icon>
+          </button>
+          <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+            <mat-icon>share</mat-icon>
+          </button>
+          <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+            <mat-icon>favorite</mat-icon>
+          </button>
+        </div>
+
+     <div>
+      <button mat-flat-button color="warn">Cancel</button>
+      <button mat-button color="primary">Publish</button>
+     </div>
+
+      </mat-toolbar>
+    </p>
+   
+   <div class="container">
+    <div class="row ">
+     <div class="col-3 ">
+       <!-- color setting Item -->
+         <mat-form-field  class="my-3">
+           <mat-label>colors</mat-label>
+           <mat-select>
+             <mat-option *ngFor="let color of colors" [value]="color.value">
+               {{color.viewValue}}
+             </mat-option>
+           </mat-select>
+         </mat-form-field>
+
+<!-- font setting Item -->
+         <mat-form-field  class="my-3">
+          <mat-label>Fonts</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let font of avaliableFonts" [value]="font.value">
+              {{font.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+<!-- header setting Item -->
+        <mat-form-field  class="my-3">
+          <mat-label>Header</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let font of avaliableFonts" [value]="font.value">
+              {{font.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+
+
+
+     </div>
+     <!-- Start  Divider  -->
+    <div class="col-2  d-flex justify-content-center">
+      <mat-divider class="horizontal"></mat-divider>
+    </div>
+     <!-- End Divider -->
+     <div class="col-7 border">
+      <mat-tab-group>
+        <mat-tab label="First" class="p-5"> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis vero ut facere excepturi, dicta in! Odio ex error consequatur rem! </mat-tab>
+        <mat-tab label="Second"> Content 2 </mat-tab>
+        <mat-tab label="Third"> Content 3 </mat-tab>
+      </mat-tab-group>
+     </div>
+   </div>
+
+</div>
