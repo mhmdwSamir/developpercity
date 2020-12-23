@@ -90,7 +90,6 @@ module.exports = {
         }
 
     },
-
     forgetPassword: async function(req, res, next) {
         let user;
         try {

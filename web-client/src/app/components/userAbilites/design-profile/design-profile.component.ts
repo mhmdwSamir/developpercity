@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { SettingDetail } from 'src/app/interfaces/setting-detail';
 
 // interface setDetail {
@@ -23,7 +24,13 @@ export class DesignProfileComponent implements OnInit {
     {value: 'san Serif ', viewValue: 'San Serif'},
     {value: 'arial', viewValue: 'Arial'}
   ];    
-  
+
+
+  settingHelpers = [
+    {name: 'home', viewName: 'HOME'},
+    {name: 'story', viewName: 'Story'},
+   
+  ];
   
   constructor() { }
 

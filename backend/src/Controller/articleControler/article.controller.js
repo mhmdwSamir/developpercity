@@ -1,9 +1,7 @@
 const Article = require("../../models/article.model");
 const { Exception } = require("../../core/Exception/Exception");
 const http_status_code = require("../../helpers/http_status_code");
-const { compareSync } = require("bcrypt");
 const Mongoose = require('mongoose');
-const User = require('../../models/user.model')
 module.exports = {
     // getAllArticles
     getAllArticles: async (req, res, next) => {
@@ -14,7 +12,7 @@ module.exports = {
             // excludedFeilds.forEach(ele => {
             //     delete queryObj[ele]
             // })
-            console.log("queryObj", queryObj)
+            // console.log("queryObj", queryObj)
             // Advanced  Filtering
 
             // let queryStr = JSON.stringify(queryObj)
@@ -32,9 +30,6 @@ module.exports = {
             //  query = await query;
             // query = Article.find(JSON.parse(queryStr))
             query = Article.find()
-
-
-
             articles = await query
 
             // // handle some Cases  ☹☹!
@@ -50,13 +45,11 @@ module.exports = {
         } catch (ex) {
             console.log(ex)
             res.status(501).send({
-
                 status: "fail",
                 message: ex.message
             })
         }
     },
-
     //getSpecificArticle
     getSpecificArticle: async (req, res) => {
         try {
@@ -89,7 +82,6 @@ module.exports = {
             })
         }
     },
-
     //deleteArticleById
     deleteArticleById: async (req, res) => {
         try {
@@ -110,7 +102,6 @@ module.exports = {
             res.send(ex)
         }
     },
-
     //delete All Articles
     deleteAll: async (req, res, next) => {
         try {

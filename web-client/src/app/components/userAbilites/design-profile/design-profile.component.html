@@ -11,9 +11,21 @@
         <!-- <span class="example-spacer"></span> -->
 
         <div>
-          <button> HOME </button>
+          
+          
+          <mat-form-field class="mr-2">
+           
+            <mat-select >
+             <!-- WHEN SELECTING CONTENT SHOWN SHOULD CHANGE  -->
+              <mat-option *ngFor="let setting of settingHelpers" [value]="setting">
+                {{setting.viewName}}
+              </mat-option>
+            </mat-select>
+           
+          </mat-form-field>
+
           <i class="fa fa-mobile"></i>
-          <i class="fa fa-desktop"></i>
+          <i class="fa fa-desktop mx-3"></i>
           <i class="fa fa-mobile"></i>
         </div>
 

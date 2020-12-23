@@ -1,1 +1,78 @@
-<p>add-story works!</p>
+ <div class="container">
+     <div class="row my-4">
+         <div class="col-12">
+
+            <form >
+<!--  title of story   -->
+                <mat-form-field [formGroup]="formAddArticle" class="c-input">
+                  <mat-label>Title</mat-label>
+                  <input 
+                  formControlName="title"
+                
+                  matInput  
+                  placeholder="Ex. How To Write Clean Code " 
+                  class="text-muted" >
+                </mat-form-field>
+                <div>
+                    <i (click)="changeShowState()" class="fa fa-plus-circle fa-2x mb-2" ></i>
+
+
+                    <!-- Icon image upload   -->
+                    <div *ngIf="showIconState">
+                        <input style="display:none" name="Select File" type="file" id="img" />
+                        <label for="img">
+                            <i class="fa fa-camera mx-2"></i>
+                        </label>
+
+                        <!-- <div >
+                            <input  matInput    id="searchUnSplach" />
+                        </div> -->
+
+<!-- Icon Search  -->
+                   <div  class="search">
+                        <mat-form-field class="search" *ngIf="searchState" >    
+                            <input matInput>
+                        </mat-form-field>
+                        <label for="searchUnSplach">
+                            <i 
+                              class="fa fa-search mx-2 "
+                              (click)="showInputSearch()"
+                              *ngIf="IconSearchStat"
+                              ></i>
+                        </label>
+                   </div>
+                        
+
+                        <i class="fa fa-play mr-2"></i>
+                        <i class="fa fa-code"></i>
+                    </div>
+
+                </div>
+              <!-- Story Body    -->
+                <mat-form-field  appearance="fill"  class="c-input" >
+                  <mat-label>Write Astory </mat-label>
+                  <textarea 
+                 
+                  matInput
+                 
+                  placeholder="It makes me feel..."></textarea>
+                </mat-form-field>
+
+
+            <button mat-button color="primary"> Publish </button>
+            <button mat-button color="warn" (click)="formAddArticle.reset()"> Reset </button>
+               
+            </form> 
+            
+         </div>
+     </div>
+ </div>
+
+
+ <div class="text-muted">
+     <p> this div for testing only  </p>
+     <p>
+      form feilds Values {{ formAddArticle.value | json}}
+     </p>
+ </div>
+   

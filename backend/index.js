@@ -9,6 +9,7 @@ const xss = require('xss-clean')
 const rateLimit = require("express-rate-limit");
 const hpp = require('hpp');
 const cors = require('cors');
+
 const userRouter = require("./src/routes/user.router");
 const articleRouter = require("./src/routes/article.router");
 const reviewRouter = require("./src/routes/review.router");
@@ -109,10 +110,10 @@ const server = app.listen(port, () => {
 
 
 //handle unhandled promise rejections
-process.on("unhandledRejection", (err) => {
-    console.log(err.name, err.message);
-    console.log(" UNHANDLED REJECTION ☹️☹️");
-    server.close(() => {
-        process.exit(1)
-    })
-});
+// process.on("unhandledRejection", (err) => {
+//     console.log(err.name, err.message);
+//     console.log(" UNHANDLED REJECTION ☹️☹️");
+//     server.close(() => {
+//         process.exit(1)
+//     })
+// });

@@ -10,7 +10,7 @@ const { createToken } = require("./globalAuth");
 const filterObj = (obj, ...allowedFeilds) => {
     const newObj = {};
     Object.keys(obj).forEach(ele => {
-        console.log("ele", ele)
+        
         if (allowedFeilds.includes(ele)) newObj[ele] = obj[ele]
 
     });
@@ -22,7 +22,7 @@ const filterObj = (obj, ...allowedFeilds) => {
 
 const createSendToken = (user, stateCode, res) => {
     const token = createToken(user.id);
-    console.log(token)
+ 
     const options = {
         httpOnly: true,
         expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000)
@@ -66,7 +66,7 @@ module.exports = {
                 //Is there is  a user registered by this email ? 
             let userExist = await User.findOne({ email });
             // If there is
-            console.log("userExist", userExist)
+           
             if (userExist) {
                 throw new Exception("User Already Registred !!  Login Now", http_status_code.Conflict, "hyUYH14I")
             }
@@ -92,24 +92,26 @@ module.exports = {
         try {
 
             let { email, password } = req.body;
-
+            let token ;
             if (!email || !password) {
                 throw new Exception('Please Provide Email & password ', http_status_code.BadRequest, 'AQwOOq84')
             }
-            let user = await User.findOne({ email }).select("+password");
-            console.log(" user ", user)
-                //let correctPass = user.checkCorrectPassword(password, user.password)
-            console.log(password)
-            console.log("user passwordS", user.password)
-            const result = await bcrypt.compare(password, user.password)
+            let user = await User.findOne({ email });
+        
 
-            console.log("correct pass : result", result)
+        //    const result =  user.checkCorrectPassword(password, user.password)
+        console.log(user)
+      const checkPass =bcrypt.compareSync(password, user.password)
+           
 
-            if (!user) { throw new Exception("Email or password may be incorrect", http_status_code.BadRequest, "KUJIJ2c26"); }
-
+            if (!user || !checkPass) {
+               return  new Exception("Email or password may be incorrect", http_status_code.BadRequest, "KUJIJ2c26");
+           }
+        
+            // console.log("User" , user)
             // create  token to user 
-
-            let token = createToken(user._id);
+                console.log(token)
+            // let token = createToken(user._id);
             res.status(200).json({
                 status: "successful login Operation ",
                 data: {
@@ -118,7 +120,7 @@ module.exports = {
                 }
             })
         } catch (ex) {
-            console.log(ex)
+           console.log("ex Caught " , ex) 
             res.status(400).json(ex)
         }
     },

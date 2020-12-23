@@ -14,7 +14,7 @@ const UserSchema = mongoose.Schema({
         type: String,
         required: true,
         trim: true,
-        select: false,
+        //select: false,
         //match:/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{8, 20}$/
     },
     email: {
@@ -44,12 +44,12 @@ const UserSchema = mongoose.Schema({
 });
 
 // Build the relation
-UserSchema.virtual("task", { // relation => one to many 
-    ref: "Task",
-    localField: "_id", // one || sould be primary || table 1 => 
-    foreignField: "owner" // many || sould be forign || table 2 => task Model 
+// UserSchema.virtual("task", { // relation => one to many 
+//     ref: "Task",
+//     localField: "_id", // one || sould be primary || table 1 => 
+//     foreignField: "owner" // many || sould be forign || table 2 => task Model 
 
-})
+// })
 
 UserSchema.virtual("article", { // relation => one to many 
     ref: "Article",
@@ -60,19 +60,11 @@ UserSchema.virtual("article", { // relation => one to many
 
 const saltRounds = 10;
 UserSchema.methods.toJson = function() {
-    console.log(this)
     let user = this;
-
-
 }
 UserSchema.methods.checkCorrectPassword = async function(candidatePass, userPass) {
-    console.log("candidatePass", candidatePass)
-    console.log("userPass", userPass)
-    const result = bcrypt.compare(candidatePass, userPass);
-
-    console.log(result)
-    return bcrypt.compare(candidatePass, userPass);
-
+ 
+    return await bcrypt.compare(candidatePass, userPass);
 }
 
 UserSchema.static.getUserCredintials = async function(email, password) {
