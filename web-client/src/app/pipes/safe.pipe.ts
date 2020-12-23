@@ -18,10 +18,12 @@ export class SafePipe implements PipeTransform {
    * @param type: string
    */
   transform(value: string, type: string): SafeHtml | SafeStyle | SafeScript | SafeUrl |    SafeResourceUrl {
-    console.log("value passed " , value)
     switch (type) {
-      case 'html':
-        return this._sanitizer.bypassSecurityTrustHtml(value);
+      case 'html': {
+        const html = this._sanitizer.bypassSecurityTrustHtml(value);
+        console.log(html)
+        return html
+      }
       case 'style':
         return this._sanitizer.bypassSecurityTrustStyle(value);
       case 'script':
