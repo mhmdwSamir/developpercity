@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {SettingDetail} from ""
+import { SettingDetail } from 'src/app/interfaces/setting-detail';
+
 // interface setDetail {
 //   value: string;
 //   viewValue: string;
