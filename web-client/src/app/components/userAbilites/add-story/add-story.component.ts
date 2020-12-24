@@ -4,6 +4,10 @@ import { environment } from '../../../../../src/environments/environment';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer, SafeHtml, SafeResourceUrl } from '@angular/platform-browser';
 import { SafePipe } from 'src/app/pipes/safe.pipe';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+
+
 
 @Component({
   selector: 'app-add-story',
@@ -13,7 +17,11 @@ import { SafePipe } from 'src/app/pipes/safe.pipe';
 export class AddStoryComponent implements OnInit {
   data = [];
   searchKeyword = "";
+
   vdSrc:any
+  itsSafe: SafeHtml;
+  ImageData:[]
+
   url = `https://api.unsplash.com/search/photos?client_id=${environment.client_id}&query=`;
 
 
@@ -23,37 +31,34 @@ export class AddStoryComponent implements OnInit {
   playStateFeild: boolean = false;
   playStateIcon: boolean = true;
 
-
-
   IconSearchStat: boolean = true
   isPassedUrl: boolean = false
+
+
   new_story: FormGroup;
 
- 
- 
-
-
+ //  Main Form holds every thing 
   formAddArticle = new FormGroup({
     title: new FormControl(null, [Validators.required]),
     newStory: new FormControl()
   });
 
+  // subForm 1 
   playGroup = new FormGroup({
     play: new FormControl(`https://www.youtube.com/embed/8EhFDJ0SGSA`),
   })
-
+// subForm 2
   searchGroup = new FormGroup({
-    search: new FormControl(null),
+    search: new FormControl(""),
   })
  
 
-  videoId = this.getId(this.playGroup.get("play").value);
-
-  itsSafe: SafeHtml;
+  
+ 
 
   // Private properties
   // private safePipe: SafePipe = new SafePipe(this.domSanitizer);
-
+  videoId = this.getId(this.playGroup.get("play").value);
 
 
   constructor(private _http: HttpClient, private domSanitizer: DomSanitizer, private sanitizer: DomSanitizer) {
@@ -62,6 +67,7 @@ export class AddStoryComponent implements OnInit {
     this.updateVideoUrl(this.getId(this.playGroup.get("play").value))
   }
   ngOnInit(): void {
+ 
   }
 
   updateVideoUrl(id: string) {
@@ -75,10 +81,10 @@ export class AddStoryComponent implements OnInit {
     this.searchInput = !this.searchInput
     this.IconSearchStat = !this.IconSearchStat
     this.playStateFeild = false
-    this.playStateIcon = true
+    this.playStateIcon = true;
+    console.log(this.searchGroup.controls.search.value)
   }
   playClicked() {
-   
     this.playStateFeild = !this.playStateFeild
     this.searchInput = false
     this.playStateIcon = !this.playStateIcon
@@ -103,17 +109,32 @@ export class AddStoryComponent implements OnInit {
   }
 
   // get Image Data 
-  searchImages() {
-    console.log("From Search Images ")
-    this._http.get(this.url + this.searchKeyword).subscribe(
-      res => {
-        //  getting the data :)
-        console.log(res)
+  searchImages(){
+    console.log("Integration Unspalsh  ")
+  this._http.get(this.url + this.searchKeyword)
+    .pipe
+    (
+    map(res => res.results)
+    
+    ) 
+    .subscribe((data)=>{
+      this.ImageData = data
+      console.log(data)
+    })
+    //resultssubscribe(
+    //   res => {
+    //     //  getting the data :)
+    //     console.log(res)
         
-      });
+    //   });
   }
 
-
+// on Select Img by USER
+imageSelectedPreviewUrl:any
+onSelectImg(image){
+   console.log("image SELECTED =>" , image)
+    this.imageSelectedPreviewUrl = image.urls.regular
+}
 
 
 }

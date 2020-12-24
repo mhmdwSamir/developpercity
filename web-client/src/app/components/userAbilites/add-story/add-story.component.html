@@ -2,6 +2,7 @@
     <div class="row my-4">
         <div class="col-12">
 
+             <!-- Start Main Form  -->
             <form>
                 <!-- start  title of story   -->
                 <mat-form-field [formGroup]="formAddArticle" class="c-input">
@@ -81,24 +82,74 @@
                 </div>
 
 
-                <!-- end icon +  -->
+                <!-- End icon +  -->
 
-                <!-- Story Body    -->
+                <!-- text Area | Story Body     -->
                 <mat-form-field appearance="fill" class="c-input">
-                    <mat-label>Write Astory </mat-label>
-                    <textarea [formControl]="formAddArticle.get('newStory')"
+                    <mat-label class="mb-3">Write Astory </mat-label>
+                    <textarea 
+                    [formControl]="formAddArticle.get('newStory')"
+                    class="c-input-special text-muted"
                      matInput placeholder="It makes me feel..."></textarea>
                 </mat-form-field>
 
 
-                <button class="btn btn-primary mr-3" > Publish </button>
-                <button class="btn btn-danger" (click)="formAddArticle.reset()"> Reset </button>
+          
 
             </form>
+            <!-- End Main Form  -->
+           
+
+             <!--Start Section  Results for searching Images  -->
+             <section class="my-4" *ngIf="ImageData">
+               <!--  If Results  -->
+                    <div class="row">
+                        <div class="imagDetail col-3" *ngFor="let image of ImageData">
+                                <a target="_blank" [href]="image.links.download">
+                                    <img 
+                                    class="imageData w-100 mb-2 " 
+                                    [src]="image.urls.thumb"
+                                    
+                                    >
+                                   
+                                </a>
+                                <i (click)="onSelectImg(image)" class="iconAdd fa fa-plus-circle fa-2x "></i>
+                            
+                        </div>
+                    </div>
+                    <!--  If No Results  -->
+             
+                <div *ngIf="!ImageData || !searchKeyword">
+                    <p class="lead text-center text-muted text-danger" > No Images Founded !! || try Later  </p>
+                </div>
+         
+            </section>
+             <!--End Section  Results for searching Images  -->
+              <!-- Start btns Control -->
+            <div class="btnsControl">
+                <button class="btn  mr-3" > Publish </button>
+                <button class="btn " (click)="formAddArticle.reset()"> Reset </button>
+             </div>
+             <!-- End btns Control -->
+
 
         </div>
     </div>
+<!--  Start Row For Previewing images   -->
+
+    <div class="row">
+       <div class="col-12">
+        <div *ngIf="imageSelectedPreviewUrl" class="image-container">
+            <p> Preview Selected Image  || regular one  </p>
+            <img [src]="imageSelectedPreviewUrl" class="image-preview">
+        </div>
+       </div>
+    </div>
+<!--  End Row For Previewing images   -->
+
 </div>
+
+
 
 
 <div class="small text-muted text-center">
@@ -110,3 +161,5 @@
         form feilds Values {{ playGroup.value }}
     </p>
 </div>
+
+
