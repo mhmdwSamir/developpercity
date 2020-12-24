@@ -11,8 +11,14 @@ import { SafePipe } from 'src/app/pipes/safe.pipe';
   styleUrls: ['./add-story.component.scss']
 })
 export class AddStoryComponent implements OnInit {
+  data = [];
+  searchKeyword = "";
+  vdSrc:any
+  url = `https://api.unsplash.com/search/photos?client_id=${environment.client_id}&query=`;
+
+
   showIconState: boolean = false;
-  searchState: boolean = false;
+  searchInput: boolean = false;
 
   playStateFeild: boolean = false;
   playStateIcon: boolean = true;
@@ -23,8 +29,8 @@ export class AddStoryComponent implements OnInit {
   isPassedUrl: boolean = false
   new_story: FormGroup;
 
-  data = [];
-  url = `https://api.unsplash.com/search/photos?client_id=${environment.client_id}&query=`;
+ 
+ 
 
 
   formAddArticle = new FormGroup({
@@ -39,26 +45,19 @@ export class AddStoryComponent implements OnInit {
   searchGroup = new FormGroup({
     search: new FormControl(null),
   })
-  searchKeyword = "";
-
-
-  vdSrc
+ 
 
   videoId = this.getId(this.playGroup.get("play").value);
 
   itsSafe: SafeHtml;
 
   // Private properties
-  private safePipe: SafePipe = new SafePipe(this.domSanitizer);
+  // private safePipe: SafePipe = new SafePipe(this.domSanitizer);
 
 
 
   constructor(private _http: HttpClient, private domSanitizer: DomSanitizer, private sanitizer: DomSanitizer) {
-    // this.new_story = fb.group({
-    //   new_story: ""
-    // });
     this.vdSrc = sanitizer.bypassSecurityTrustResourceUrl(this.videoId)
-    // this.itsSafe = this.safePipe.transform(this.videoId, 'html');
     console.log(" control Play ", this.playGroup.get("play").value)
     this.updateVideoUrl(this.getId(this.playGroup.get("play").value))
   }
@@ -66,28 +65,24 @@ export class AddStoryComponent implements OnInit {
   }
 
   updateVideoUrl(id: string) {
-    // Appending an ID to a YouTube URL is safe.
-    // Always make sure to construct SafeValue objects as
-    // close as possible to the input data so
-    // that it's easier to check if the value is safe.
-
     let VideoUrl = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/' + this.videoId)
     return VideoUrl
   }
   changeShowState() {
     this.showIconState = !this.showIconState
   }
-  showInputSearch() {
-    console.log("arrived ")
-    this.searchState = !this.searchState
+  searchClicked() {
+    this.searchInput = !this.searchInput
     this.IconSearchStat = !this.IconSearchStat
-    this.playStateFeild = !this.playStateFeild
-    this.playStateIcon = !this.playStateIcon
+    this.playStateFeild = false
+    this.playStateIcon = true
   }
   playClicked() {
-    console.log("clicked")
+   
     this.playStateFeild = !this.playStateFeild
+    this.searchInput = false
     this.playStateIcon = !this.playStateIcon
+   
   }
   showInputvideoLink() {
     console.log("arrived ")
@@ -102,26 +97,23 @@ export class AddStoryComponent implements OnInit {
     return (match && match[2].length === 11) ? match[2] : null;
   }
 
-
-  // const iframeMarkup = '<iframe width="560" height="315" src="//www.youtube.com/embed/' 
-  //     + videoId + '" frameborder="0" allowfullscreen></iframe>';
-
   onKeyEnter(event) {
-    console.log("key char was entered !! ", event)
     this.isPassedUrl = !this.isPassedUrl
     this.vdSrc = this.playGroup.get("play").value
-    console.log(this.playGroup.get("play").value)
   }
 
-
-
-
+  // get Image Data 
   searchImages() {
     console.log("From Search Images ")
     this._http.get(this.url + this.searchKeyword).subscribe(
       res => {
+        //  getting the data :)
         console.log(res)
-        // this.data = res['results'];​
+        
       });
   }
+
+
+
+
 }
