@@ -20,4 +20,11 @@ export class ArticlesService {
   getArticles(): Observable<IArticlesReponse> {
     return this._http.get<IArticlesReponse>(this.articlesRootUrl);
   }
+
+
+  addArticles(article:Article): Observable<any> {
+    console.log(article)
+    return this._http.post(`${this.articlesRootUrl}/add`,article);
+  }
+
 }

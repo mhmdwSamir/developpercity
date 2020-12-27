@@ -1,53 +1,56 @@
-<div class="row ">
-    <div class="col-6">
-        <div class="bg">
-        </div>
-    </div>
-    <div class="col-6">
-        <div>
-            <div>
-                <p> Already have an Account ? <a routerLink="/login"> Log In </a> </p>
+<div class="container">
+    <div class="row ">
+        <div class="col-6">
+            <div class="bg">
             </div>
-            <h1> Create Your Account </h1>
-            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-                <!-- <div class="form-group">
-                    <label for="name">Name </label>
-                    <input formControlName="name" type="text" class="form-control" id="name" placeholder="Your Name ">
-
-                </div> -->
-
-
-                <app-input [control]="registerForm.controls.name" label="Name" placeholder="Your Name"></app-input>
-                <app-input [control]="registerForm.controls.email" label="Email" placeholder="Your Email"></app-input>
-                <app-input [control]="registerForm.controls.password" label="Password" placeholder="Your Password"></app-input>
-                <app-input [control]="registerForm.controls.repeatPassword" label="repeatPassword" placeholder="Your repeatPassword"></app-input>
-                <!-- <div class="form-group">
-                    <label for="email">Email </label>
-                    <input formControlName="email" type="text" class="form-control" id="email" placeholder="Email">
-
-                </div> -->
-
-                <!-- <div class="form-group">
-                    <label for="password">Password</label>
-                    <input formControlName="password" type="text" class="form-control" id="password" placeholder="Password">
+        </div>
+        <div class="col-6">
+            <div>
+                <div>
+                    <p> Already have an Account ? <a routerLink="/login"> Log In </a> </p>
                 </div>
-                <div class="form-group">
-                    <label for="Rpassword">Repeat Password</label>
-                    <input formControlName="repeatPassword" type="text" class="form-control" id="Rpassword" placeholder="Repeat Password">
-                </div> -->
-
-
-                <button type="submit" [disabled]="loading" class="btn form-control btn-primary">Sign up</button>
-
-                <div class="form-check mt-2">
-                    <input type="checkbox" class="form-check-input" id="check">
-                    <label class="form-check-label text-muted" for="check">
-                        I don't Wish to receive bla bla bla 
+                <h1> Create Your Account </h1>
+                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                    <!-- <div class="form-group">
+                        <label for="name">Name </label>
+                        <input formControlName="name" type="text" class="form-control" id="name" placeholder="Your Name ">
     
-                    </label>
-                </div>
-            </form>
-
+                    </div> -->
+    
+    
+                    <app-input [control]="registerForm.controls.name" label="Name" placeholder="Your Name"></app-input>
+                    <app-input [control]="registerForm.controls.email" label="Email" placeholder="Your Email"></app-input>
+                    <app-input [control]="registerForm.controls.password" label="Password" placeholder="Your Password"></app-input>
+                    <app-input [control]="registerForm.controls.repeatPassword" label="repeatPassword" placeholder="Your repeatPassword"></app-input>
+                    <!-- <div class="form-group">
+                        <label for="email">Email </label>
+                        <input formControlName="email" type="text" class="form-control" id="email" placeholder="Email">
+    
+                    </div> -->
+    
+                    <!-- <div class="form-group">
+                        <label for="password">Password</label>
+                        <input formControlName="password" type="text" class="form-control" id="password" placeholder="Password">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="Rpassword">Repeat Password</label>
+                        <input formControlName="repeatPassword" type="text" class="form-control" id="Rpassword" placeholder="Repeat Password">
+                    </div> -->
+    
+    
+                    <button type="submit" [disabled]="loading" class="btn form-control btn-primary">Sign up</button>
+    
+                    <div class="form-check mt-2">
+                        <input type="checkbox" class="form-check-input" id="check">
+                        <label class="form-check-label text-muted" for="check">
+                            I don't Wish to receive..........
+        
+                        </label>
+                    </div>
+                </form>
+    
+            </div>
         </div>
     </div>
 </div>

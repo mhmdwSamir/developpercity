@@ -1,26 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { RegisterComponent } from "./components/register/register.component"
-import { LogInComponent } from "./components/log-in/log-in.component"
-import { NotFoundComponent } from './components/not-found/not-found.component';
-import { HomeComponent } from './components/home/home.component';
-import { AuthGuard } from "./guards"
-import { PlanComponent } from './components/plan/plan.component';
-import { AdminComponent } from './components/admin/admin.component';
+import { AuthGuard } from "./guards";
 import { RoleGuardService as RoleGuard } from './guards/role-gservice.guard';
-import { UserComponent } from './components/user/user.component';
-import { AboutComponent } from './nav-list-coms/about/about.component';
-
-import { FollowerComponent } from './shared/follower/follower.component';
-import { HelpComponent } from './nav-list-coms/help/help.component';
-import { LegalComponent } from './nav-list-coms/legal/legal.component';
-import { AddStoryComponent } from './components/userAbilites/add-story/add-story.component';
-import { DesignProfileComponent } from './components/userAbilites/design-profile/design-profile.component';
-import { StoriesComponent } from './components/userAbilites/stories/stories.component';
-import { StatsComponent } from './components/userAbilites/stats/stats.component';
-
-
-
+import {RegisterComponent,LogInComponent,NotFoundComponent,HomeComponent , StatsComponent ,StoriesComponent ,DesignProfileComponent , AddStoryComponent ,LegalComponent , HelpComponent ,
+  FollowerComponent ,AboutComponent , UserComponent ,AdminComponent , PlanComponent} from  './index-imports';
 
 
 const appRoutes: Routes = [
