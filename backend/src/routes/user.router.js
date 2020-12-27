@@ -25,6 +25,7 @@ const storage = multer.diskStorage({
         cb(null, ` user-${req.user.id}-${Date.now()}.${ext}`)
     }
 });
+
 const multerFilter = (req, file, cb) => {
     if (file.mimetype.startsWith("image")) {
         cb(null, true)

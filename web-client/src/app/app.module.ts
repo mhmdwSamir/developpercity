@@ -59,6 +59,7 @@ import { StoriesComponent } from './components/userAbilites/stories/stories.comp
 // import 
 import { MaterialModule } from './material-deisgn/material.module';
 import { SafePipe } from './pipes/safe.pipe';
+import { ToastComponent } from './shared/toast/toast.component';
 
 export function tokenGetter() {
   // console.log(localStorage.getItem("access_token"))
@@ -112,6 +113,7 @@ export function tokenGetter() {
     DesignProfileComponent,
     StoriesComponent,
     SafePipe,
+    ToastComponent,
   ],
   imports: [
     BrowserModule,
