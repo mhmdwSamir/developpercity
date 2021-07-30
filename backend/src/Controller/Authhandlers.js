@@ -1,16 +1,14 @@
-// require('dotenv').config({ path: "./config.env" });
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
-const User = require("../models/user.model");
-const { Exception } = require("../core/Exception/Exception");
-const http_status_code = require("../helpers/http_status_code");
-const { createToken } = require("./globalAuth");
-const { Unauthorized } = require("../helpers/http_status_code");
+const User = require('../models/user.model');
+const { Exception } = require('../core/Exception/Exception');
+const http_status_code = require('../helpers/http_status_code');
+const { createToken } = require('./globalAuth');
+const { Unauthorized } = require('../helpers/http_status_code');
 
 const SALT_ROUNDS = 10;
 
-// { name , email , password , role }   ||   name & email
 const filterObj = (obj, ...allowedFeilds) => {
   const newObj = {};
   Object.keys(obj).forEach((ele) => {
@@ -30,10 +28,10 @@ const createSendToken = (user, stateCode, res) => {
       Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
     ),
   };
-  res.cookie("Jwt", token, options);
-  console.log("cookie created successfully");
+  res.cookie('Jwt', token, options);
+  console.log('cookie created successfully');
   res.status(stateCode).send({
-    status: "success",
+    status: 'success',
     token,
     data: {
       user,
@@ -47,11 +45,12 @@ module.exports = {
       let userList = await User.find();
 
       res.status(200).send({
-        status: "SuccessFul Operation",
+        status: 'SuccessFul Operation',
         results: userList.length,
         data: userList,
       });
     } catch (ex) {
+      console.error(ex);
       res.status(404).send({ ex });
     }
   },
@@ -64,9 +63,9 @@ module.exports = {
 
       if (!name || !email || !password) {
         throw new Exception(
-          "Please Provide | name | emmail | password | role",
+          'Please Provide | name | emmail | password | role',
           http_status_code.BadRequest,
-          "jjherYq24"
+          'jjherYq24'
         );
       }
       // Is there is  a user registered by this email ?
@@ -74,9 +73,9 @@ module.exports = {
       // If there is
       if (userExist) {
         throw new Exception(
-          "User Already Registred !!  Login Now",
+          'User Already Registred !!  Login Now',
           http_status_code.Conflict,
-          "hyUYH14I"
+          'hyUYH14I'
         );
       }
 
@@ -91,11 +90,11 @@ module.exports = {
       let token = createToken(user._id);
       user = await user.save();
       res.status(200).send({
-        status: "Success sign up operation",
+        status: 'Success sign up operation',
         data: { token },
       });
     } catch (ex) {
-      console.log(ex);
+      console.error(ex);
       res.status(404).send({ ex });
     }
   },
@@ -105,9 +104,9 @@ module.exports = {
       let { email, password } = req.body;
       if (!email || !password) {
         throw new Exception(
-          "Please Provide Email & password ",
+          'Please Provide Email & password ',
           http_status_code.BadRequest,
-          "AQwOOq84"
+          'AQwOOq84'
         );
       }
       let user = await User.findOne({ email });
@@ -115,17 +114,17 @@ module.exports = {
       const checkPass = bcrypt.compareSync(password, user.password);
       if (!user || !checkPass) {
         throw new Exception(
-          "Email or password may be incorrect",
+          'Email or password may be incorrect',
           http_status_code.BadRequest,
-          "KUJIJ2c26"
+          'KUJIJ2c26'
         );
       }
       res.status(200).json({
-        status: "successful login Operation ",
+        status: 'successful login Operation ',
         data: { token: createToken(user._id) },
       });
     } catch (ex) {
-      console.log("ex Caught ", ex);
+      console.error('ex Caught ', ex);
       res.status(400).json(ex);
     }
   },
@@ -135,13 +134,13 @@ module.exports = {
     try {
       const token = req.headers.authorization;
       if (token == null || (!!token && token.trim().length == 0)) {
-        throw new Exception("Invalid token", Unauthorized, "TKNINVD_xx3");
+        throw new Exception('Invalid token', Unauthorized, 'TKNINVD_xx3');
       }
 
       try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         const currentUser = await User.findById(decoded.currentUserId).select(
-          "_id name email"
+          '_id name email'
         );
 
         res.json(currentUser);
@@ -155,7 +154,7 @@ module.exports = {
         }
       }
     } catch (exc) {
-      console.log("ex Caught ", exc);
+      console.error('ex Caught ', exc);
       res.status(exc.statusCode || 400).json(exc);
     }
   },
@@ -171,26 +170,27 @@ module.exports = {
                this route is not for passwords Update . Please use /updateMyPasswoed
              `,
           400,
-          "srtDqdd22"
+          'srtDqdd22'
         );
       // 2- update user Document
-      let data = filterObj(req.body, "name", "email");
+      let data = filterObj(req.body, 'name', 'email');
       const upDatedUser = await User.findByIdAndUpdate(req.user.id, data, {
         new: true,
         runValidators: true,
       });
       res.status(200).send({
-        status: "Success Update Operation to current User ",
+        status: 'Success Update Operation to current User ',
         upDatedUser,
       });
     } catch (ex) {
+      console.error(exc);
       res.status(500).send(ex);
     }
   },
   updateUser: async () => {
     res.status(500).json({
-      status: "Error",
-      message: " this route is not defined yet  !! ",
+      status: 'Error',
+      message: ' this route is not defined yet  !! ',
     });
   },
 
@@ -201,11 +201,12 @@ module.exports = {
         active: false,
       });
       res.status(200).send({
-        status: "Success delete Operation to current User ",
-        Note: " User Still In Db ",
+        status: 'Success delete Operation to current User ',
+        Note: ' User Still In Db ',
         deletedUser,
       });
     } catch (ex) {
+      console.error(exc);
       res.status(404).send(ex);
     }
   },
