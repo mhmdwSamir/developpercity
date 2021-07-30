@@ -1,42 +1,30 @@
 require('dotenv').config({ path: "./config.env" });
 const jwt = require('jsonwebtoken');
-const crypto = require("crypto");
-const { promisify } = require("util");
 const { Exception } = require("../core/Exception/Exception");
 const http_status_code = require("../helpers/http_status_code")
 const User = require("../models/user.model");
 const { sendEmail } = require("../helpers/mail")
-const util = require("util");
-const { Console } = require('console');
 
 // console.log(process.env)
 module.exports = {
     createToken: (id) => {
         if (id) {
             console.log("User Id to create its Token ", id)
-            const token = jwt.sign({ id }, process.env.JWT_SECRET, {
-                    expiresIn: process.env.JWT_EXPIRES_IN
-                })
-                // console.log(process.env.JWT_COOKIE_EXPIRES_IN)
-                // const options = {
-                //     httpOnly: true,
-                //     expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000)
-
-            // };
-            // const result = res.cookie('Jwt', token, options);
-
-            // console.log('cookie created successfully');
-            // res.status(stateCode).send({
-            //     status: "success",
-            //     token,
-            //     data: {
-            //         user
-            //     }
-
+            const token = jwt.sign({ currentUserId: id }, process.env.JWT_SECRET, {
+                expiresIn: process.env.JWT_EXPIRES_IN
+            });
+            // when verify function throws error.
+            // jwt.verify('sadsfdsdfs', 'mohammedsamir')
+            // if token is an invalid token example: 'sdsfdsf'
+            // if the token passed is not from my application
+            // if token is an valid token,  your application created it and expiration date is over.
+            // jjsadjhiuwehriwu34iu24hushdsaiudhaisdhwqiueh23erhuhewiued
             return token
         }
+
+        throw new Error(`You can not create token without passing a valid id you passed ${id}`);
     },
-    protect: async function(req, res, next) {
+    protect: async function (req, res, next) {
         try {
             // 1-  Getting token and check of it is there 
             let token;
@@ -51,7 +39,7 @@ module.exports = {
             let decoded = jwt.verify(token, process.env.JWT_SECRET);
 
             if (!decoded) next(new Exception("Please Login to get access", http_status_code.Unauthorized, "SWkl5254r"))
-                // 3-  check if user still exist 
+            // 3-  check if user still exist 
             const freshUser = await User.findById(decoded.id);
             if (!freshUser) {
                 next(new Exception("the User belonging to this token does no longer Exist", http_status_code.Unauthorized, "SWkl5254r"))
@@ -64,7 +52,7 @@ module.exports = {
             req.user = freshUser;
 
             next()
-                // 5-  then next()   will  continue 
+            // 5-  then next()   will  continue 
         } catch (ex) {
             console.log({ ex })
             res.status(400).send(" Some thing May Be Wrong  ~!!! ")
@@ -72,7 +60,7 @@ module.exports = {
 
     },
     // Authorization
-    restricTo: function(...roles) {
+    restricTo: function (...roles) {
         // remeber that we have [ user itself in ( req ) ]
         return (req, res, next) => {
 
@@ -90,7 +78,7 @@ module.exports = {
         }
 
     },
-    forgetPassword: async function(req, res, next) {
+    forgetPassword: async function (req, res, next) {
         let user;
         try {
             // - get user based on EMAIL
@@ -104,8 +92,8 @@ module.exports = {
             //  // - Send it to user Email 
 
             const resetUrl = `${req.protocol}://${req.get("host")}/api/auth/resetPassword/${resetToken}`
-                // console.log(resetUrl)
-                //   console.log("before")
+            // console.log(resetUrl)
+            //   console.log("before")
             const message = ` Forget Your password ?! submit a PATCH with your new password to ${resetUrl}`;
             await sendEmail({
                 email: user.email,
@@ -121,16 +109,16 @@ module.exports = {
 
         } catch (ex) {
             console.log(ex)
-                // user.passwordResetToken = undefined;
-                // user.passwordExpiresAt = undefined;
-                // // console.log(user)
-                // user = await user.save({ validateBeforeSave: false });
-                // res.send(ex)
-                // return next(new Exception("There was An error Happend", 409, "SEgfrwg45"))
+            // user.passwordResetToken = undefined;
+            // user.passwordExpiresAt = undefined;
+            // // console.log(user)
+            // user = await user.save({ validateBeforeSave: false });
+            // res.send(ex)
+            // return next(new Exception("There was An error Happend", 409, "SEgfrwg45"))
 
         }
     },
-    resetPassword: async function(req, res, next) {
+    resetPassword: async function (req, res, next) {
 
         // 1-  get user based on the token 
         // const hasedToken = crypto.createHash("sha256")
